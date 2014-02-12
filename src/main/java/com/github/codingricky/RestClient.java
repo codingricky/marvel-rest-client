@@ -15,8 +15,7 @@ public class RestClient {
 
         String stringToHash = timeStamp + privateKey + publicKey;
         String hash = DigestUtils.md5Hex(stringToHash);
-
-        String url = String.format("http://gateway.marvel.com/v1/public/characters?timeStamp=%i&apikey=%s&hash=%s&limit=%i", timeStamp, publicKey, hash, limit);
+        String url = String.format("http://gateway.marvel.com/v1/public/characters?ts=%d&apikey=%s&hash=%s&limit=%d", timeStamp, publicKey, hash, limit);
         String output = new Resty().text(url).toString();
         System.out.println(output);
     }
