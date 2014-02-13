@@ -1,11 +1,8 @@
 package com.github.codingricky.marvel.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import java.util.Date;
 import java.util.List;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class MarvelCharacter {
 
     private int id;
@@ -15,10 +12,10 @@ public class MarvelCharacter {
     private String resourceURI;
     private List<URL> urls;
     private Image thumbnail;
-    private ComicList comicList;
-    private StoryList storyList;
-    private EventList eventList;
-    private SeriesList seriesList;
+    private ComicList comics;
+    private StoryList stories;
+    private EventList events;
+    private SeriesList series;
 
     public int getId() {
         return id;
@@ -76,36 +73,36 @@ public class MarvelCharacter {
         this.thumbnail = thumbnail;
     }
 
-    public ComicList getComicList() {
-        return comicList;
+    public ComicList getComics() {
+        return comics;
     }
 
-    public void setComicList(ComicList comicList) {
-        this.comicList = comicList;
+    public void setComics(ComicList comics) {
+        this.comics = comics;
     }
 
-    public StoryList getStoryList() {
-        return storyList;
+    public StoryList getStories() {
+        return stories;
     }
 
-    public void setStoryList(StoryList storyList) {
-        this.storyList = storyList;
+    public void setStories(StoryList stories) {
+        this.stories = stories;
     }
 
-    public EventList getEventList() {
-        return eventList;
+    public EventList getEvents() {
+        return events;
     }
 
-    public void setEventList(EventList eventList) {
-        this.eventList = eventList;
+    public void setEvents(EventList events) {
+        this.events = events;
     }
 
-    public SeriesList getSeriesList() {
-        return seriesList;
+    public SeriesList getSeries() {
+        return series;
     }
 
-    public void setSeriesList(SeriesList seriesList) {
-        this.seriesList = seriesList;
+    public void setSeries(SeriesList series) {
+        this.series = series;
     }
 
     @Override
@@ -118,10 +115,10 @@ public class MarvelCharacter {
                 ", resourceURI='" + resourceURI + '\'' +
                 ", urls=" + urls +
                 ", thumbnail=" + thumbnail +
-                ", comicList=" + comicList +
-                ", storyList=" + storyList +
-                ", eventList=" + eventList +
-                ", seriesList=" + seriesList +
+                ", comics=" + comics +
+                ", stories=" + stories +
+                ", events=" + events +
+                ", series=" + series +
                 '}';
     }
 }
