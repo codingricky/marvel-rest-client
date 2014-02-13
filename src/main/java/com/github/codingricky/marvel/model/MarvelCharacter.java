@@ -1,9 +1,9 @@
 package com.github.codingricky.marvel.model;
 
-import com.google.common.base.Objects;
-
 import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class MarvelCharacter {
 
@@ -109,18 +109,7 @@ public class MarvelCharacter {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
-                .addValue(id)
-                .addValue(name)
-                .addValue(description)
-                .addValue(modified)
-                .addValue(resourceURI)
-                .addValue(urls)
-                .addValue(thumbnail)
-                .addValue(comics)
-                .addValue(stories)
-                .addValue(events)
-                .addValue(series)
-                .toString();
+        return ToStringBuilder.reflectionToString(this);
     }
+
 }

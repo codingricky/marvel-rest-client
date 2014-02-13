@@ -1,6 +1,6 @@
 package com.github.codingricky.marvel.model;
 
-import com.google.common.base.Objects;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class URL {
     private String type;
@@ -24,9 +24,6 @@ public class URL {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
-                .addValue(type)
-                .addValue(url)
-                .toString();
+        return ToStringBuilder.reflectionToString(this);
     }
 }

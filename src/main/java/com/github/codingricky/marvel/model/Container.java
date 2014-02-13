@@ -1,8 +1,8 @@
 package com.github.codingricky.marvel.model;
 
-import com.google.common.base.Objects;
-
 import java.util.List;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Container<T> {
     private int offset;
@@ -51,14 +51,9 @@ public class Container<T> {
         this.results = results;
     }
 
+
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
-                .addValue(offset)
-                .addValue(limit)
-                .addValue(total)
-                .addValue(count)
-                .addValue(results)
-                .toString();
+        return ToStringBuilder.reflectionToString(this);
     }
 }

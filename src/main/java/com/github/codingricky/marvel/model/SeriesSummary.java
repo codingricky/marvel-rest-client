@@ -1,6 +1,6 @@
 package com.github.codingricky.marvel.model;
 
-import com.google.common.base.Objects;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class SeriesSummary {
     private String resourceURI;
@@ -24,9 +24,7 @@ public class SeriesSummary {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
-                .addValue(resourceURI)
-                .addValue(name)
-                .toString();
+        return ToStringBuilder.reflectionToString(this);
     }
+
 }

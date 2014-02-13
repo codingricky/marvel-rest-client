@@ -1,6 +1,6 @@
 package com.github.codingricky.marvel.model;
 
-import com.google.common.base.Objects;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Text {
     private String type;
@@ -31,13 +31,8 @@ public class Text {
         this.text = text;
     }
 
-
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
-                .addValue(type)
-                .addValue(language)
-                .addValue(text)
-                .toString();
+        return ToStringBuilder.reflectionToString(this);
     }
 }

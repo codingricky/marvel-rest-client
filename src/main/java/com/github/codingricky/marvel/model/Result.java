@@ -1,6 +1,6 @@
 package com.github.codingricky.marvel.model;
 
-import com.google.common.base.Objects;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Result<T> {
     private int code;
@@ -42,11 +42,7 @@ public class Result<T> {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
-                .addValue(code)
-                .addValue(status)
-                .addValue(etag)
-                .addValue(data)
-                .toString();
+        return ToStringBuilder.reflectionToString(this);
     }
+
 }

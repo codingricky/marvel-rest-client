@@ -1,8 +1,8 @@
 package com.github.codingricky.marvel.model;
 
-import com.google.common.base.Objects;
-
 import java.util.List;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class ComicList extends AbstractList {
     private List<ComicSummary> items;
@@ -15,14 +15,8 @@ public class ComicList extends AbstractList {
         this.items = items;
     }
 
-
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
-                .addValue(items)
-                .addValue(available)
-                .addValue(returned)
-                .addValue(collectionURI)
-                .toString();
+        return ToStringBuilder.reflectionToString(this);
     }
 }

@@ -1,8 +1,8 @@
 package com.github.codingricky.marvel.model;
 
-import com.google.common.base.Objects;
-
 import java.util.List;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class SeriesList {
     private int available;
@@ -44,11 +44,6 @@ public class SeriesList {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
-                .addValue(available)
-                .addValue(returned)
-                .addValue(collectionURI)
-                .addValue(items)
-                .toString();
+        return ToStringBuilder.reflectionToString(this);
     }
 }

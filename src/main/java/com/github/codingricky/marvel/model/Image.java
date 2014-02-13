@@ -1,6 +1,6 @@
 package com.github.codingricky.marvel.model;
 
-import com.google.common.base.Objects;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Image {
     private String path;
@@ -24,9 +24,7 @@ public class Image {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
-                .addValue(path)
-                .addValue(extension)
-                .toString();
+        return ToStringBuilder.reflectionToString(this);
     }
+
 }
