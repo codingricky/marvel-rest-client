@@ -1,5 +1,9 @@
 language: java
 jdk:
-  - oraclejdk8
-  - oraclejdk7
-  - openjdk6
+- oraclejdk8
+- oraclejdk7
+- openjdk6
+env:
+  global:
+    - PUBLIC_KEY=2b174f8c26f6e5590c1980cd42a7d093
+    secure: b4blKpsY6SNyC71vk945H9Dub069AERcZtlALpzWfnyWSnpkN29wd7EeIUxYb1k7wvtj+R5kwVV/VxMKZricKUDWxP1tZgl/+Vp99HI5uAkJBMHyi8Ee8U4TKZ7qYy2tyH3sNTsLgv/R2A6Uxtd34zBQr4Lozu+z2gK8QwMcLv4=
