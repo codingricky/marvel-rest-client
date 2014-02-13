@@ -1,5 +1,7 @@
 package com.github.codingricky.marvel.model;
 
+import com.google.common.base.Objects;
+
 public class Result<T> {
     private int code;
     private String status;
@@ -40,11 +42,11 @@ public class Result<T> {
 
     @Override
     public String toString() {
-        return "Result{" +
-                "code=" + code +
-                ", status='" + status + '\'' +
-                ", data=" + data +
-                ", etag='" + etag + '\'' +
-                '}';
+        return Objects.toStringHelper(this)
+                .addValue(code)
+                .addValue(status)
+                .addValue(etag)
+                .addValue(data)
+                .toString();
     }
 }

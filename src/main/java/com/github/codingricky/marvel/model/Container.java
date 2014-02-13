@@ -1,5 +1,7 @@
 package com.github.codingricky.marvel.model;
 
+import com.google.common.base.Objects;
+
 import java.util.List;
 
 public class Container<T> {
@@ -51,12 +53,12 @@ public class Container<T> {
 
     @Override
     public String toString() {
-        return "Container{" +
-                "offset=" + offset +
-                ", limit=" + limit +
-                ", total=" + total +
-                ", count=" + count +
-                ", results=" + results +
-                '}';
+        return Objects.toStringHelper(this)
+                .addValue(offset)
+                .addValue(limit)
+                .addValue(total)
+                .addValue(count)
+                .addValue(results)
+                .toString();
     }
 }

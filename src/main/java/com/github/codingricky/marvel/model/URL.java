@@ -1,5 +1,7 @@
 package com.github.codingricky.marvel.model;
 
+import com.google.common.base.Objects;
+
 public class URL {
     private String type;
     private String url;
@@ -22,9 +24,9 @@ public class URL {
 
     @Override
     public String toString() {
-        return "URL{" +
-                "type='" + type + '\'' +
-                ", url='" + url + '\'' +
-                '}';
+        return Objects.toStringHelper(this)
+                .addValue(type)
+                .addValue(url)
+                .toString();
     }
 }

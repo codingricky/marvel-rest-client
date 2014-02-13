@@ -1,5 +1,7 @@
 package com.github.codingricky.marvel.model;
 
+import com.google.common.base.Objects;
+
 import java.util.List;
 
 public class ComicList extends AbstractList {
@@ -14,4 +16,13 @@ public class ComicList extends AbstractList {
     }
 
 
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .addValue(items)
+                .addValue(available)
+                .addValue(returned)
+                .addValue(collectionURI)
+                .toString();
+    }
 }

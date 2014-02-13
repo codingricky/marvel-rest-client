@@ -1,5 +1,7 @@
 package com.github.codingricky.marvel.model;
 
+import com.google.common.base.Objects;
+
 public class EventSummary {
     private String resourceURI;
     private String name;
@@ -22,9 +24,9 @@ public class EventSummary {
 
     @Override
     public String toString() {
-        return "EventSummary{" +
-                "resourceURI='" + resourceURI + '\'' +
-                ", name='" + name + '\'' +
-                '}';
+        return Objects.toStringHelper(this)
+                .addValue(resourceURI)
+                .addValue(name)
+                .toString();
     }
 }

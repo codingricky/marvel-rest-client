@@ -7,4 +7,6 @@ public class ResourceList {
     private int returned;
     private String collectionURI;
     private List items;
+
+
 }

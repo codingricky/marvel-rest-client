@@ -1,5 +1,7 @@
 package com.github.codingricky.marvel.model;
 
+import com.google.common.base.Objects;
+
 public class StorySummary {
     private String resourceURI;
     private String name;
@@ -31,10 +33,10 @@ public class StorySummary {
 
     @Override
     public String toString() {
-        return "StorySummary{" +
-                "resourceURI='" + resourceURI + '\'' +
-                ", name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                '}';
+        return Objects.toStringHelper(this)
+                .addValue(resourceURI)
+                .addValue(name)
+                .addValue(type)
+                .toString();
     }
 }

@@ -1,5 +1,7 @@
 package com.github.codingricky.marvel.model;
 
+import com.google.common.base.Objects;
+
 import java.util.List;
 
 public class EventList {
@@ -38,5 +40,16 @@ public class EventList {
 
     public void setItems(List<EventSummary> items) {
         this.items = items;
+    }
+
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .addValue(available)
+                .addValue(returned)
+                .addValue(collectionURI)
+                .addValue(items)
+                .toString();
     }
 }

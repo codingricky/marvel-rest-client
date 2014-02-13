@@ -1,5 +1,7 @@
 package com.github.codingricky.marvel.model;
 
+import com.google.common.base.Objects;
+
 public class Text {
     private String type;
     private String language;
@@ -27,5 +29,15 @@ public class Text {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .addValue(type)
+                .addValue(language)
+                .addValue(text)
+                .toString();
     }
 }
