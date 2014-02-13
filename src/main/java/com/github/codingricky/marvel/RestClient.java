@@ -24,6 +24,13 @@ public class RestClient {
         return objectMapper.readValue(result, javaType);
     }
 
+    public Result<MarvelCharacter> getCharacters(Parameters parameters) throws IOException {
+        final String result = new Resty().text(urlFactory.getCharactersURL(parameters)).toString();
+        final ObjectMapper objectMapper = new ObjectMapper();
+        JavaType javaType = objectMapper.getTypeFactory().constructParametricType(Result.class, MarvelCharacter.class);
+        return objectMapper.readValue(result, javaType);
+    }
+
     public Result<MarvelCharacter> getCharacter(int characterId) throws IOException {
         final String result = new Resty().text(urlFactory.getCharacterURL(characterId)).toString();
         final ObjectMapper objectMapper = new ObjectMapper();
@@ -36,10 +43,8 @@ public class RestClient {
         String publicKey = args[0];
         String privateKey = args[1];
         final RestClient restClient = new RestClient(privateKey, publicKey);
-        final Result<MarvelCharacter> characters = restClient.getCharacters(3);
-        final List<MarvelCharacter> results = characters.getData().getResults();
-        System.out.println(results.get(0));
 
-        System.out.println(restClient.getCharacter(1009521));
+        final Result<MarvelCharacter> characters = restClient.getCharacters(new ParameterBuilder().withLimit(5).create());
+        System.out.println(characters.toString());
     }
 }

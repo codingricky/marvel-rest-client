@@ -1,5 +1,6 @@
 package com.github.codingricky.marvel;
 
+import gumi.builders.UrlBuilder;
 import org.apache.commons.codec.digest.DigestUtils;
 
 public class URLFactory {
@@ -29,5 +30,16 @@ public class URLFactory {
     private String createHash(long timeStamp) {
         String stringToHash = timeStamp + privateKey + publicKey;
         return DigestUtils.md5Hex(stringToHash);
+    }
+
+    public String getCharactersURL(Parameters parameters) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "characters");
+        long timeStamp = System.currentTimeMillis();
+        urlBuilder = parameters.addParameters(urlBuilder).addParameter("ts", String.valueOf(timeStamp))
+                .addParameter("apikey", publicKey)
+                .addParameter("hash", createHash(timeStamp));
+
+        System.out.println(urlBuilder.toString());
+        return urlBuilder.toString();
     }
 }
