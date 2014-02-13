@@ -16,8 +16,18 @@ public class URLFactory {
 
     public String getCharactersURL(int limit) {
         long timeStamp = System.currentTimeMillis();
-        String stringToHash = timeStamp + privateKey + publicKey;
-        String hash = DigestUtils.md5Hex(stringToHash);
+        String hash = createHash(timeStamp);
         return String.format("%scharacters?ts=%d&apikey=%s&hash=%s&limit=%d", BASE_URL, timeStamp, publicKey, hash, limit);
+    }
+
+    public String getCharacterURL(int characterId) {
+        long timeStamp = System.currentTimeMillis();
+        String hash = createHash(timeStamp);
+        return String.format("%scharacters/%d?ts=%d&apikey=%s&hash=%s", BASE_URL, characterId, timeStamp, publicKey, hash);
+    }
+
+    private String createHash(long timeStamp) {
+        String stringToHash = timeStamp + privateKey + publicKey;
+        return DigestUtils.md5Hex(stringToHash);
     }
 }

@@ -24,11 +24,22 @@ public class RestClient {
         return objectMapper.readValue(result, javaType);
     }
 
+    public Result<MarvelCharacter> character(int characterId) throws IOException {
+        final String result = new Resty().text(urlFactory.getCharacterURL(characterId)).toString();
+        final ObjectMapper objectMapper = new ObjectMapper();
+        JavaType javaType = objectMapper.getTypeFactory().constructParametricType(Result.class, MarvelCharacter.class);
+        return objectMapper.readValue(result, javaType);
+
+    }
+
     public static void main(String[] args) throws IOException {
         String publicKey = args[0];
         String privateKey = args[1];
-        final Result<MarvelCharacter> characters = new RestClient(privateKey, publicKey).characters(3);
+        final RestClient restClient = new RestClient(privateKey, publicKey);
+        final Result<MarvelCharacter> characters = restClient.characters(3);
         final List<MarvelCharacter> results = characters.getData().getResults();
         System.out.println(results.get(0));
+
+        System.out.println(restClient.character(1009521));
     }
 }
