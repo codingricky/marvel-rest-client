@@ -37,4 +37,10 @@ public class RestClientTest {
         Result<MarvelCharacter> characters = restClient.getCharacters(new ParameterBuilder().withLimit(5).create());
         assertThat(characters.getData().getCount()).isEqualTo(5);
     }
+
+    @Test
+    public void testGetCharacter() throws IOException {
+        Result<MarvelCharacter> character = restClient.getCharacter(1009521);
+        assertThat(character.getData().getResults().get(0).getName().trim()).isEqualTo("Hank Pym");
+    }
 }

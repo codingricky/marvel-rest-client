@@ -38,8 +38,6 @@ public class URLFactory {
         urlBuilder = parameters.addParameters(urlBuilder).addParameter("ts", String.valueOf(timeStamp))
                 .addParameter("apikey", publicKey)
                 .addParameter("hash", createHash(timeStamp));
-
-        System.out.println(urlBuilder.toString());
         return urlBuilder.toString();
     }
 }
