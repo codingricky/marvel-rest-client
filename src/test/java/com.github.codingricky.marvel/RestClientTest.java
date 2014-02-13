@@ -26,8 +26,8 @@ public class RestClientTest {
             privateKey = System.getProperty("PRIVATE_KEY");
         }
 
-        assertTrue("Public key is blank", !StringUtils.isBlank(publicKey));
-        assertTrue("Private key is blank", !StringUtils.isBlank(privateKey));
+        assertThat(publicKey).isNotEmpty();
+        assertThat(privateKey).isNotEmpty();
 
         restClient = new RestClient(privateKey, publicKey);
     }
@@ -36,6 +36,12 @@ public class RestClientTest {
     public void testGetCharacters() throws IOException {
         Result<MarvelCharacter> characters = restClient.getCharacters(new ParameterBuilder().withLimit(5).create());
         assertThat(characters.getData().getCount()).isEqualTo(5);
+    }
+
+    @Test
+    public void testGetCharactersWithName() throws IOException {
+        Result<MarvelCharacter> characters = restClient.getCharacters(new ParameterBuilder().withName("Black Widow").create());
+        assertThat(characters.getData().getTotal()).isEqualTo(1);
     }
 
     @Test
