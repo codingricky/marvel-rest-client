@@ -21,6 +21,12 @@ public class URLFactory {
         return String.format("%scharacters/%d?ts=%d&apikey=%s&hash=%s", BASE_URL, characterId, timeStamp, publicKey, hash);
     }
 
+    public String getCharacterComicsURL(int characterId) {
+        long timeStamp = System.currentTimeMillis();
+        String hash = createHash(timeStamp);
+        return String.format("%scharacters/%d/comics?ts=%d&apikey=%s&hash=%s", BASE_URL, characterId, timeStamp, publicKey, hash);
+    }
+
     private String createHash(long timeStamp) {
         String stringToHash = timeStamp + privateKey + publicKey;
         return DigestUtils.md5Hex(stringToHash);

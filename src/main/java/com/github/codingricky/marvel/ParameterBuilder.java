@@ -22,7 +22,7 @@ public class ParameterBuilder {
     }
 
     public ParameterBuilder addSeries(Integer series) {
-        parameters.setSeries(series);
+        parameters.addSeries(series);
         return this;
     }
 

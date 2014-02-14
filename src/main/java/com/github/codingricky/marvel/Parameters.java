@@ -66,4 +66,20 @@ public class Parameters {
             this.series.append(series);
         }
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setModifiedSince(Date modifiedSince) {
+        this.modifiedSince = modifiedSince;
+    }
+
+    public void setLimit(Integer limit) {
+        this.limit = limit;
+    }
+
+    public void setOffset(Integer offset) {
+        this.offset = offset;
+    }
 }

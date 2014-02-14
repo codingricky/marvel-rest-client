@@ -3,6 +3,7 @@ package com.github.codingricky.marvel;
 import java.io.IOException;
 import java.util.List;
 
+import com.github.codingricky.marvel.model.Comic;
 import com.github.codingricky.marvel.model.MarvelCharacter;
 import com.github.codingricky.marvel.model.Result;
 import org.apache.commons.lang3.StringUtils;
@@ -70,5 +71,11 @@ public class RestClientTest {
     public void testGetCharacter() throws IOException {
         Result<MarvelCharacter> character = restClient.getCharacter(1009521);
         assertThat(character.getData().getResults().get(0).getName().trim()).isEqualTo("Hank Pym");
+    }
+
+    @Test
+    public void testGetCharacterComics() throws IOException {
+        Result<Comic> comics = restClient.getCharacterComics(1009521);
+        System.out.println(comics);
     }
 }
