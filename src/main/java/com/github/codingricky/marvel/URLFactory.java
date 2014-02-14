@@ -16,20 +16,14 @@ public class URLFactory {
     }
 
     public String getCharacterURL(int characterId) {
-        long timeStamp = System.currentTimeMillis();
-        String hash = createHash(timeStamp);
-        return String.format("%scharacters/%d?ts=%d&apikey=%s&hash=%s", BASE_URL, characterId, timeStamp, publicKey, hash);
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "characters/" + characterId);
+        return addAuthorisationParameters(urlBuilder).toString();
     }
 
     public String getCharacterComicsURL(int characterId) {
-        long timeStamp = System.currentTimeMillis();
-        String hash = createHash(timeStamp);
-        return String.format("%scharacters/%d/comics?ts=%d&apikey=%s&hash=%s", BASE_URL, characterId, timeStamp, publicKey, hash);
-    }
-
-    private String createHash(long timeStamp) {
-        String stringToHash = timeStamp + privateKey + publicKey;
-        return DigestUtils.md5Hex(stringToHash);
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "characters/" + characterId + "/comics");
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
     }
 
     public String getCharactersURL(Parameters parameters) {
@@ -38,6 +32,20 @@ public class URLFactory {
         urlBuilder = parameters.addParameters(urlBuilder).addParameter("ts", String.valueOf(timeStamp))
                 .addParameter("apikey", publicKey)
                 .addParameter("hash", createHash(timeStamp));
+        System.out.println(urlBuilder.toString());
         return urlBuilder.toString();
     }
+
+    private UrlBuilder addAuthorisationParameters(UrlBuilder urlBuilder) {
+        long timeStamp = System.currentTimeMillis();
+        return urlBuilder.addParameter("ts", String.valueOf(timeStamp))
+                .addParameter("apikey", publicKey)
+                .addParameter("hash", createHash(timeStamp));
+    }
+
+    private String createHash(long timeStamp) {
+        String stringToHash = timeStamp + privateKey + publicKey;
+        return DigestUtils.md5Hex(stringToHash);
+    }
+
 }

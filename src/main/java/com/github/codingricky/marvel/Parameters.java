@@ -51,7 +51,7 @@ public class Parameters {
 
     public void addComics(Integer comics) {
         if (this.comics == null) {
-            this.comics = new StringBuilder(comics);
+            this.comics = new StringBuilder(comics.toString());
         } else {
             this.comics.append(",");
             this.comics.append(comics);

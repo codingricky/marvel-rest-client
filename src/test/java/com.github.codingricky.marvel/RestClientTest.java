@@ -14,7 +14,10 @@ import static org.fest.assertions.Assertions.assertThat;
 
 public class RestClientTest {
 
-    public static final int COMIC_ID = 6908;
+    private static final int AMAZING_SPIDER_MAN_COMIC_ID = 6908;
+    private static final int AVENGERS_COMIC_ID = 17519;
+    private static final int BLACK_WIDOW_ID = 1009189;
+
     private RestClient restClient;
 
     @Before
@@ -44,23 +47,24 @@ public class RestClientTest {
     public void testGetCharactersWithName() throws IOException {
         Result<MarvelCharacter> characters = restClient.getCharacters(new ParameterBuilder().withName("Black Widow").create());
         assertThat(characters.getData().getTotal()).isEqualTo(1);
-        assertThat(characters.getData().getResults().get(0).getName()).isEqualTo("Black Widow");
-        System.out.println(characters.getData().getResults().get(0).getComics());
+        MarvelCharacter blackWidow = characters.getData().getResults().get(0);
+        assertThat(blackWidow.getName()).isEqualTo("Black Widow");
+        assertThat(blackWidow.getId()).isEqualTo(BLACK_WIDOW_ID);
     }
 
     @Test
     public void testGetCharactersWithComics() throws IOException {
-        Result<MarvelCharacter> characters = restClient.getCharacters(new ParameterBuilder().addComic(COMIC_ID).addComic(24348).orderBy("name").create());
-        assertThat(characters.getData().getCount()).isEqualTo(2);
+        Result<MarvelCharacter> characters = restClient.getCharacters(new ParameterBuilder().withName("Black Widow").addComic(AVENGERS_COMIC_ID).orderBy("name").create());
+
+        assertThat(characters.getData().getCount()).isEqualTo(1);
         final List<MarvelCharacter> results = characters.getData().getResults();
 
-        assertThat(results.get(0).getName()).isEqualTo("Black Widow");
-        assertThat(results.get(1).getName()).isEqualTo("Spider-Man");
+        assertThat(results.get(0).getId()).isEqualTo(BLACK_WIDOW_ID);
     }
 
     @Test
     public void testGetCharactersOrderBy() throws IOException {
-        Result<MarvelCharacter> characters = restClient.getCharacters(new ParameterBuilder().addComic(COMIC_ID).orderBy("-name").orderBy("modified").create());
+        Result<MarvelCharacter> characters = restClient.getCharacters(new ParameterBuilder().addComic(AMAZING_SPIDER_MAN_COMIC_ID).orderBy("-name").orderBy("modified").create());
         final List<MarvelCharacter> results = characters.getData().getResults();
 
         assertThat(results.get(0).getName()).isEqualTo("Spider-Man");
@@ -69,13 +73,13 @@ public class RestClientTest {
 
     @Test
     public void testGetCharacter() throws IOException {
-        Result<MarvelCharacter> character = restClient.getCharacter(1009521);
-        assertThat(character.getData().getResults().get(0).getName().trim()).isEqualTo("Hank Pym");
+        Result<MarvelCharacter> character = restClient.getCharacter(BLACK_WIDOW_ID);
+        assertThat(character.getData().getResults().get(0).getName().trim()).isEqualTo("Black Widow");
     }
 
     @Test
     public void testGetCharacterComics() throws IOException {
-        Result<Comic> comics = restClient.getCharacterComics(1009521);
-        System.out.println(comics);
+        Result<Comic> comics = restClient.getCharacterComics(BLACK_WIDOW_ID);
+        assertThat(comics.getData()).isNotNull();
     }
 }

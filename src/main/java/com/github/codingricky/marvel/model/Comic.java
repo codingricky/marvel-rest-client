@@ -1,9 +1,8 @@
 package com.github.codingricky.marvel.model;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
-import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Comic {
     private int id;
@@ -12,7 +11,7 @@ public class Comic {
     private double issueNumber;
     private String variantDescription;
     private String description;
-    private Date modified;
+    private String modified;
     private String isbn;
     private String upc;
     private String diamondCode;
@@ -25,6 +24,7 @@ public class Comic {
     private List<URL> urls;
     private SeriesSummary series;
     private List<ComicSummary> collections;
+    private List<ComicSummary> variants;
     private List<ComicSummary> collectedIssues;
     private List<ComicDate> dates;
     private List<ComicPrice> prices;
@@ -83,11 +83,11 @@ public class Comic {
         this.description = description;
     }
 
-    public Date getModified() {
+    public String getModified() {
         return modified;
     }
 
-    public void setModified(Date modified) {
+    public void setModified(String modified) {
         this.modified = modified;
     }
 
@@ -257,6 +257,14 @@ public class Comic {
 
     public void setEvents(EventList events) {
         this.events = events;
+    }
+
+    public List<ComicSummary> getVariants() {
+        return variants;
+    }
+
+    public void setVariants(List<ComicSummary> variants) {
+        this.variants = variants;
     }
 
     @Override

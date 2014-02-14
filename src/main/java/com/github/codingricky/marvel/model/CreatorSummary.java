@@ -3,16 +3,16 @@ package com.github.codingricky.marvel.model;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class CreatorSummary {
-    private String resourceUri;
+    private String resourceURI;
     private String name;
     private String role;
 
-    public String getResourceUri() {
-        return resourceUri;
+    public String getResourceURI() {
+        return resourceURI;
     }
 
-    public void setResourceUri(String resourceUri) {
-        this.resourceUri = resourceUri;
+    public void setResourceURI(String resourceURI) {
+        this.resourceURI = resourceURI;
     }
 
     public String getName() {
