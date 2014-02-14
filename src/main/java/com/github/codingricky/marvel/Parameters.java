@@ -11,6 +11,7 @@ public class Parameters {
     private Integer series;
     private Integer limit;
     private Integer offset;
+    private StringBuilder orderBy;
 
     public UrlBuilder addParameters(UrlBuilder urlBuilder) {
         if (name != null) {
@@ -29,6 +30,10 @@ public class Parameters {
         if (offset != null) {
             urlBuilder = urlBuilder.addParameter("offset", offset.toString());
         }
+        if (orderBy != null) {
+            urlBuilder = urlBuilder.addParameter("orderBy", orderBy.toString());
+        }
+
         return urlBuilder;
     }
 
@@ -78,5 +83,14 @@ public class Parameters {
 
     public void setOffset(Integer offset) {
         this.offset = offset;
+    }
+
+    public void addOrderBy(String orderBy) {
+        if (this.orderBy == null) {
+            this.orderBy = new StringBuilder(orderBy);
+        } else {
+            this.orderBy.append(",");
+            this.orderBy.append(orderBy);
+        }
     }
 }

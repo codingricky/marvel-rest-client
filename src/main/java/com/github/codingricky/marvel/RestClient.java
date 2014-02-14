@@ -16,13 +16,6 @@ public class RestClient {
         this.urlFactory = new URLFactory(privateKey, publicKey);
     }
 
-    public Result<MarvelCharacter> getCharacters(int limit) throws IOException {
-        final String result = new Resty().text(urlFactory.getCharactersURL(limit)).toString();
-        final ObjectMapper objectMapper = new ObjectMapper();
-        JavaType javaType = objectMapper.getTypeFactory().constructParametricType(Result.class, MarvelCharacter.class);
-        return objectMapper.readValue(result, javaType);
-    }
-
     public Result<MarvelCharacter> getCharacters(Parameters parameters) throws IOException {
         final String result = new Resty().text(urlFactory.getCharactersURL(parameters)).toString();
         final ObjectMapper objectMapper = new ObjectMapper();

@@ -36,6 +36,11 @@ public class ParameterBuilder {
         return this;
     }
 
+    public ParameterBuilder orderBy(String orderBy) {
+        parameters.addOrderBy(orderBy);
+        return this;
+    }
+
     public Parameters create() {
         return parameters;
     }
