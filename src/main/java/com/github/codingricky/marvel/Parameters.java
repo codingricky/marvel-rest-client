@@ -7,11 +7,11 @@ import gumi.builders.UrlBuilder;
 public class Parameters {
     private String name;
     private Date modifiedSince;
-    private Integer comics;
-    private Integer series;
+    private StringBuilder comics;
+    private StringBuilder series;
+    private StringBuilder orderBy;
     private Integer limit;
     private Integer offset;
-    private StringBuilder orderBy;
 
     public UrlBuilder addParameters(UrlBuilder urlBuilder) {
         if (name != null) {
@@ -23,6 +23,9 @@ public class Parameters {
         }
         if (comics != null) {
             urlBuilder = urlBuilder.addParameter("comics", comics.toString());
+        }
+        if (series != null) {
+            urlBuilder = urlBuilder.addParameter("series", series.toString());
         }
         if (limit != null) {
             urlBuilder = urlBuilder.addParameter("limit", limit.toString());
@@ -37,60 +40,30 @@ public class Parameters {
         return urlBuilder;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Date getModifiedSince() {
-        return modifiedSince;
-    }
-
-    public void setModifiedSince(Date modifiedSince) {
-        this.modifiedSince = modifiedSince;
-    }
-
-    public Integer getComics() {
-        return comics;
-    }
-
-    public void setComics(Integer comics) {
-        this.comics = comics;
-    }
-
-    public Integer getSeries() {
-        return series;
-    }
-
-    public void setSeries(Integer series) {
-        this.series = series;
-    }
-
-    public Integer getLimit() {
-        return limit;
-    }
-
-    public void setLimit(Integer limit) {
-        this.limit = limit;
-    }
-
-    public Integer getOffset() {
-        return offset;
-    }
-
-    public void setOffset(Integer offset) {
-        this.offset = offset;
-    }
-
     public void addOrderBy(String orderBy) {
         if (this.orderBy == null) {
             this.orderBy = new StringBuilder(orderBy);
         } else {
             this.orderBy.append(",");
             this.orderBy.append(orderBy);
+        }
+    }
+
+    public void addComics(Integer comics) {
+        if (this.comics == null) {
+            this.comics = new StringBuilder(comics);
+        } else {
+            this.comics.append(",");
+            this.comics.append(comics);
+        }
+    }
+
+    public void addSeries(Integer series) {
+        if (this.series == null) {
+            this.series = new StringBuilder(series);
+        } else {
+            this.series.append(",");
+            this.series.append(series);
         }
     }
 }

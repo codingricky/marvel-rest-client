@@ -16,12 +16,12 @@ public class ParameterBuilder {
         return this;
     }
 
-    public ParameterBuilder withComics(Integer comics) {
-        parameters.setComics(comics);
+    public ParameterBuilder addComic(Integer comics) {
+        parameters.addComics(comics);
         return this;
     }
 
-    public ParameterBuilder withSeries(Integer series) {
+    public ParameterBuilder addSeries(Integer series) {
         parameters.setSeries(series);
         return this;
     }
