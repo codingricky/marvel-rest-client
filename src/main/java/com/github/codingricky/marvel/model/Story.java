@@ -1,12 +1,17 @@
 package com.github.codingricky.marvel.model;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+@JsonIgnoreProperties
 public class Story {
     private int id;
     private String title;
     private String description;
     private String resourceURI;
+    private List<URL> urls;
     private String type;
     private String modified;
     private Image thumbnail;
@@ -16,6 +21,11 @@ public class Story {
     private CharacterList characters;
     private CreatorList creators;
     private ComicSummary originalIssue;
+    private String start;
+    private String end;
+    private StoryList stories;
+    private StorySummary next;
+    private StorySummary previous;
 
     public int getId() {
         return id;
@@ -119,6 +129,55 @@ public class Story {
 
     public void setOriginalIssue(ComicSummary originalIssue) {
         this.originalIssue = originalIssue;
+    }
+
+    public List<URL> getUrls() {
+        return urls;
+    }
+
+    public void setUrls(List<URL> urls) {
+        this.urls = urls;
+    }
+
+    public String getStart() {
+        return start;
+    }
+
+    public void setStart(String start) {
+        this.start = start;
+    }
+
+    public String getEnd() {
+        return end;
+    }
+
+    public void setEnd(String end) {
+        this.end = end;
+    }
+
+    public StoryList getStories() {
+        return stories;
+    }
+
+    public StorySummary getNext() {
+        return next;
+    }
+
+    public void setNext(StorySummary next) {
+        this.next = next;
+    }
+
+    public StorySummary getPrevious() {
+        return previous;
+    }
+
+    public void setPrevious(StorySummary previous) {
+        this.previous = previous;
+    }
+
+    public void setStories(StoryList stories) {
+        this.stories = stories;
+
     }
 
     @Override

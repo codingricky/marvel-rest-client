@@ -35,8 +35,13 @@ public class URLFactory {
         return urlBuilder.toString();
     }
 
-
     public String getCharactersEventURL(int characterId) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "characters/" + characterId + "/events");
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
+    }
+
+    public String getCharactersStoriesURL(int characterId) {
         UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "characters/" + characterId + "/events");
         urlBuilder = addAuthorisationParameters(urlBuilder);
         return urlBuilder.toString();
@@ -53,5 +58,4 @@ public class URLFactory {
         String stringToHash = timeStamp + privateKey + publicKey;
         return DigestUtils.md5Hex(stringToHash);
     }
-
 }

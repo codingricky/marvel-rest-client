@@ -8,6 +8,7 @@ import com.github.codingricky.marvel.model.Comic;
 import com.github.codingricky.marvel.model.Event;
 import com.github.codingricky.marvel.model.MarvelCharacter;
 import com.github.codingricky.marvel.model.Result;
+import com.github.codingricky.marvel.model.Story;
 import us.monoid.web.Resty;
 
 public class RestClient {
@@ -24,9 +25,13 @@ public class RestClient {
     }
 
     public Result<Event> getCharactersEvents(int characterId) throws IOException {
-        System.out.println(urlFactory.getCharactersEventURL(characterId));
         final String result = new Resty().text(urlFactory.getCharactersEventURL(characterId)).toString();
         return convertToResult(Event.class, result);
+    }
+
+    public Result<Story> getCharactersStories(int characterId) throws IOException {
+        final String result = new Resty().text(urlFactory.getCharactersStoriesURL(characterId)).toString();
+        return convertToResult(Story.class, result);
     }
 
     public Result<MarvelCharacter> getCharacters(Parameters parameters) throws IOException {
