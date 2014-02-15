@@ -47,6 +47,13 @@ public class URLFactory {
         return urlBuilder.toString();
     }
 
+
+    public String getCharactersSeriesURL(int characterId) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "characters/" + characterId + "/series");
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
+    }
+
     private UrlBuilder addAuthorisationParameters(UrlBuilder urlBuilder) {
         long timeStamp = System.currentTimeMillis();
         return urlBuilder.addParameter("ts", String.valueOf(timeStamp))

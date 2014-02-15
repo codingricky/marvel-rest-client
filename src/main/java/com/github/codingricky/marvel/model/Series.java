@@ -9,6 +9,7 @@ public class Series {
     private String title;
     private String description;
     private String resourceURI;
+    private String type;
     private List<URL> urls;
     private int startYear;
     private int endYear;
@@ -157,6 +158,14 @@ public class Series {
 
     public void setPrevious(SeriesSummary previous) {
         this.previous = previous;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     @Override

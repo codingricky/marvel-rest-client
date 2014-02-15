@@ -8,6 +8,7 @@ import com.github.codingricky.marvel.model.Comic;
 import com.github.codingricky.marvel.model.Event;
 import com.github.codingricky.marvel.model.MarvelCharacter;
 import com.github.codingricky.marvel.model.Result;
+import com.github.codingricky.marvel.model.Series;
 import com.github.codingricky.marvel.model.Story;
 import us.monoid.web.Resty;
 
@@ -32,6 +33,11 @@ public class RestClient {
     public Result<Story> getCharactersStories(int characterId) throws IOException {
         final String result = getURL(urlFactory.getCharactersStoriesURL(characterId));
         return convertToResult(Story.class, result);
+    }
+
+    public Result<Series> getCharactersSeries(int characterId) throws IOException {
+        final String result = getURL(urlFactory.getCharactersSeriesURL(characterId));
+        return convertToResult(Series.class, result);
     }
 
     public Result<MarvelCharacter> getCharacters(Parameters parameters) throws IOException {
