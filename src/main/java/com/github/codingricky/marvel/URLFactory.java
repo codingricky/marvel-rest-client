@@ -53,7 +53,7 @@ public class URLFactory {
         return urlBuilder.toString();
     }
 
-    public String getComics() {
+    public String getComicsURL() {
         UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "comics");
         urlBuilder = addAuthorisationParameters(urlBuilder);
         return urlBuilder.toString();
@@ -69,5 +69,11 @@ public class URLFactory {
     private String createHash(long timeStamp) {
         String stringToHash = timeStamp + privateKey + publicKey;
         return DigestUtils.md5Hex(stringToHash);
+    }
+
+    public String getComicsURL(int comicId) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "comics/" + comicId);
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
     }
 }

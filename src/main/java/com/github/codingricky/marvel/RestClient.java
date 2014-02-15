@@ -51,7 +51,12 @@ public class RestClient {
     }
 
     public Result<Comic> getComics() throws IOException {
-        final String result = getURL(urlFactory.getComics());
+        final String result = getURL(urlFactory.getComicsURL());
+        return convertToResult(Comic.class, result);
+    }
+
+    public Result<Comic> getComics(int comicId) throws IOException {
+        final String result = getURL(urlFactory.getComicsURL(comicId));
         return convertToResult(Comic.class, result);
     }
 
@@ -64,4 +69,5 @@ public class RestClient {
     private String getURL(String url) throws IOException {
         return new Resty().text(url).toString();
     }
+
 }
