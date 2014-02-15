@@ -19,32 +19,29 @@ public class RestClient {
     }
 
     public Result<Comic> getCharactersComics(int characterId) throws IOException {
-        System.out.println(urlFactory.getCharactersComicsURL(characterId));
         final String result = new Resty().text(urlFactory.getCharactersComicsURL(characterId)).toString();
-        final ObjectMapper objectMapper = new ObjectMapper();
-        JavaType javaType = objectMapper.getTypeFactory().constructParametricType(Result.class, Comic.class);
-        return objectMapper.readValue(result, javaType);
+        return convertToResult(Comic.class, result);
     }
 
     public Result<Event> getCharactersEvents(int characterId) throws IOException {
         System.out.println(urlFactory.getCharactersEventURL(characterId));
         final String result = new Resty().text(urlFactory.getCharactersEventURL(characterId)).toString();
-        final ObjectMapper objectMapper = new ObjectMapper();
-        JavaType javaType = objectMapper.getTypeFactory().constructParametricType(Result.class, Event.class);
-        return objectMapper.readValue(result, javaType);
+        return convertToResult(Event.class, result);
     }
 
     public Result<MarvelCharacter> getCharacters(Parameters parameters) throws IOException {
         final String result = new Resty().text(urlFactory.getCharactersURL(parameters)).toString();
-        final ObjectMapper objectMapper = new ObjectMapper();
-        JavaType javaType = objectMapper.getTypeFactory().constructParametricType(Result.class, MarvelCharacter.class);
-        return objectMapper.readValue(result, javaType);
+        return convertToResult(MarvelCharacter.class, result);
     }
 
     public Result<MarvelCharacter> getCharacter(int characterId) throws IOException {
         final String result = new Resty().text(urlFactory.getCharacterURL(characterId)).toString();
+        return convertToResult(MarvelCharacter.class, result);
+    }
+
+    private <T> Result<T> convertToResult(Class clazz, String result) throws IOException {
         final ObjectMapper objectMapper = new ObjectMapper();
-        JavaType javaType = objectMapper.getTypeFactory().constructParametricType(Result.class, MarvelCharacter.class);
+        JavaType javaType = objectMapper.getTypeFactory().constructParametricType(Result.class, clazz);
         return objectMapper.readValue(result, javaType);
     }
 }
