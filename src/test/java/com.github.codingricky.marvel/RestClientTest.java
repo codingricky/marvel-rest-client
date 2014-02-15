@@ -104,5 +104,10 @@ public class RestClientTest {
         assertThat(series.getData()).isNotNull();
     }
 
+    @Test
+    public void testGetComics() throws Exception {
+        Result<Comic> comics = restClient.getComics();
+        assertThat(comics.getData()).isNotNull();
+    }
 
 }

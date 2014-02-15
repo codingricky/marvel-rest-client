@@ -50,6 +50,11 @@ public class RestClient {
         return convertToResult(MarvelCharacter.class, result);
     }
 
+    public Result<Comic> getComics() throws IOException {
+        final String result = getURL(urlFactory.getComics());
+        return convertToResult(Comic.class, result);
+    }
+
     private <T> Result<T> convertToResult(Class clazz, String result) throws IOException {
         final ObjectMapper objectMapper = new ObjectMapper();
         JavaType javaType = objectMapper.getTypeFactory().constructParametricType(Result.class, clazz);

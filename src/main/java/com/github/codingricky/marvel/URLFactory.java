@@ -47,9 +47,14 @@ public class URLFactory {
         return urlBuilder.toString();
     }
 
-
     public String getCharactersSeriesURL(int characterId) {
         UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "characters/" + characterId + "/series");
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
+    }
+
+    public String getComics() {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "comics");
         urlBuilder = addAuthorisationParameters(urlBuilder);
         return urlBuilder.toString();
     }
