@@ -20,27 +20,27 @@ public class RestClient {
     }
 
     public Result<Comic> getCharactersComics(int characterId) throws IOException {
-        final String result = new Resty().text(urlFactory.getCharactersComicsURL(characterId)).toString();
+        final String result = getURL(urlFactory.getCharactersComicsURL(characterId));
         return convertToResult(Comic.class, result);
     }
 
     public Result<Event> getCharactersEvents(int characterId) throws IOException {
-        final String result = new Resty().text(urlFactory.getCharactersEventURL(characterId)).toString();
+        final String result = getURL(urlFactory.getCharactersEventURL(characterId));
         return convertToResult(Event.class, result);
     }
 
     public Result<Story> getCharactersStories(int characterId) throws IOException {
-        final String result = new Resty().text(urlFactory.getCharactersStoriesURL(characterId)).toString();
+        final String result = getURL(urlFactory.getCharactersStoriesURL(characterId));
         return convertToResult(Story.class, result);
     }
 
     public Result<MarvelCharacter> getCharacters(Parameters parameters) throws IOException {
-        final String result = new Resty().text(urlFactory.getCharactersURL(parameters)).toString();
+        final String result = getURL(urlFactory.getCharactersURL(parameters));
         return convertToResult(MarvelCharacter.class, result);
     }
 
     public Result<MarvelCharacter> getCharacter(int characterId) throws IOException {
-        final String result = new Resty().text(urlFactory.getCharacterURL(characterId)).toString();
+        final String result = getURL(urlFactory.getCharacterURL(characterId));
         return convertToResult(MarvelCharacter.class, result);
     }
 
@@ -48,5 +48,9 @@ public class RestClient {
         final ObjectMapper objectMapper = new ObjectMapper();
         JavaType javaType = objectMapper.getTypeFactory().constructParametricType(Result.class, clazz);
         return objectMapper.readValue(result, javaType);
+    }
+
+    private String getURL(String url) throws IOException {
+        return new Resty().text(url).toString();
     }
 }
