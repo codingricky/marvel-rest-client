@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import com.github.codingricky.marvel.model.Comic;
+import com.github.codingricky.marvel.model.Event;
 import com.github.codingricky.marvel.model.MarvelCharacter;
 import com.github.codingricky.marvel.model.Result;
 import org.apache.commons.lang3.StringUtils;
@@ -78,8 +79,16 @@ public class RestClientTest {
     }
 
     @Test
-    public void testGetCharacterComics() throws IOException {
-        Result<Comic> comics = restClient.getCharacterComics(BLACK_WIDOW_ID);
+    public void testGetCharactersComics() throws IOException {
+        Result<Comic> comics = restClient.getCharactersComics(BLACK_WIDOW_ID);
         assertThat(comics.getData()).isNotNull();
     }
+
+    @Test
+    public void testGetCharactersEvents() throws IOException {
+        Result<Event> events = restClient.getCharactersEvents(BLACK_WIDOW_ID);
+        assertThat(events.getData()).isNotNull();
+    }
+
+
 }

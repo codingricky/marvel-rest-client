@@ -20,7 +20,7 @@ public class URLFactory {
         return addAuthorisationParameters(urlBuilder).toString();
     }
 
-    public String getCharacterComicsURL(int characterId) {
+    public String getCharactersComicsURL(int characterId) {
         UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "characters/" + characterId + "/comics");
         urlBuilder = addAuthorisationParameters(urlBuilder);
         return urlBuilder.toString();
@@ -32,7 +32,13 @@ public class URLFactory {
         urlBuilder = parameters.addParameters(urlBuilder).addParameter("ts", String.valueOf(timeStamp))
                 .addParameter("apikey", publicKey)
                 .addParameter("hash", createHash(timeStamp));
-        System.out.println(urlBuilder.toString());
+        return urlBuilder.toString();
+    }
+
+
+    public String getCharactersEventURL(int characterId) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "characters/" + characterId + "/events");
+        urlBuilder = addAuthorisationParameters(urlBuilder);
         return urlBuilder.toString();
     }
 

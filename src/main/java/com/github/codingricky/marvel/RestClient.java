@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.codingricky.marvel.model.Comic;
+import com.github.codingricky.marvel.model.Event;
 import com.github.codingricky.marvel.model.MarvelCharacter;
 import com.github.codingricky.marvel.model.Result;
 import us.monoid.web.Resty;
@@ -17,11 +18,19 @@ public class RestClient {
         this.urlFactory = new URLFactory(privateKey, publicKey);
     }
 
-    public Result<Comic> getCharacterComics(int characterId) throws IOException {
-        System.out.println(urlFactory.getCharacterComicsURL(characterId));
-        final String result = new Resty().text(urlFactory.getCharacterComicsURL(characterId)).toString();
+    public Result<Comic> getCharactersComics(int characterId) throws IOException {
+        System.out.println(urlFactory.getCharactersComicsURL(characterId));
+        final String result = new Resty().text(urlFactory.getCharactersComicsURL(characterId)).toString();
         final ObjectMapper objectMapper = new ObjectMapper();
         JavaType javaType = objectMapper.getTypeFactory().constructParametricType(Result.class, Comic.class);
+        return objectMapper.readValue(result, javaType);
+    }
+
+    public Result<Event> getCharactersEvents(int characterId) throws IOException {
+        System.out.println(urlFactory.getCharactersEventURL(characterId));
+        final String result = new Resty().text(urlFactory.getCharactersEventURL(characterId)).toString();
+        final ObjectMapper objectMapper = new ObjectMapper();
+        JavaType javaType = objectMapper.getTypeFactory().constructParametricType(Result.class, Event.class);
         return objectMapper.readValue(result, javaType);
     }
 
