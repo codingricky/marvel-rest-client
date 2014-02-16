@@ -46,4 +46,5 @@ public class SeriesList {
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
     }
+
 }

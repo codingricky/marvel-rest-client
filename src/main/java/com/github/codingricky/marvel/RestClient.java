@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.codingricky.marvel.model.Comic;
+import com.github.codingricky.marvel.model.Creator;
 import com.github.codingricky.marvel.model.Event;
 import com.github.codingricky.marvel.model.MarvelCharacter;
 import com.github.codingricky.marvel.model.Result;
@@ -58,6 +59,26 @@ public class RestClient {
     public Result<Comic> getComics(int comicId) throws IOException {
         final String result = getURL(urlFactory.getComicsURL(comicId));
         return convertToResult(Comic.class, result);
+    }
+
+    public Result<Event> getComicsEvents(int comicId) throws IOException {
+        final String result = getURL(urlFactory.getComicsEventsURL(comicId));
+        return convertToResult(Event.class, result);
+    }
+
+    public Result<Story> getComicsStories(int comicId) throws IOException {
+        final String result = getURL(urlFactory.getComicsStoriesURL(comicId));
+        return convertToResult(Story.class, result);
+    }
+
+    public Result<Creator> getComicsCreators(int comicId) throws IOException {
+        final String result = getURL(urlFactory.getComicsCharactersURL(comicId));
+        return convertToResult(Creator.class, result);
+    }
+
+    public Result<MarvelCharacter> getComicsCharacters(int comicId) throws IOException {
+        final String result = getURL(urlFactory.getComicsCharactersURL(comicId));
+        return convertToResult(MarvelCharacter.class, result);
     }
 
     private <T> Result<T> convertToResult(Class clazz, String result) throws IOException {

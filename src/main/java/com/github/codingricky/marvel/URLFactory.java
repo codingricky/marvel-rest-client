@@ -59,6 +59,30 @@ public class URLFactory {
         return urlBuilder.toString();
     }
 
+    public String getComicsCharactersURL(int comicId) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "comics/" + comicId + "/characters");
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
+    }
+
+    public String getComicsCreatorsURL(int comicId) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "comics/" + comicId + "/creators");
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
+    }
+
+    public String getComicsEventsURL(int comicId) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "comics/" + comicId + "/events");
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
+    }
+
+    public String getComicsStoriesURL(int comicId) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "comics/" + comicId + "/stories");
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
+    }
+
     private UrlBuilder addAuthorisationParameters(UrlBuilder urlBuilder) {
         long timeStamp = System.currentTimeMillis();
         return urlBuilder.addParameter("ts", String.valueOf(timeStamp))

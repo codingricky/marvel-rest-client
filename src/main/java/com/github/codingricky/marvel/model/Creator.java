@@ -20,6 +20,8 @@ public class Creator {
     private StoryList stories;
     private ComicList comics;
     private EventList events;
+    private String name;
+    private String description;
 
     public int getId() {
         return id;
@@ -131,6 +133,22 @@ public class Creator {
 
     public void setEvents(EventList events) {
         this.events = events;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override

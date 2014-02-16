@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import com.github.codingricky.marvel.model.Comic;
+import com.github.codingricky.marvel.model.Creator;
 import com.github.codingricky.marvel.model.Event;
 import com.github.codingricky.marvel.model.MarvelCharacter;
 import com.github.codingricky.marvel.model.Result;
@@ -11,6 +12,7 @@ import com.github.codingricky.marvel.model.Series;
 import com.github.codingricky.marvel.model.Story;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.fest.assertions.Assertions.assertThat;
@@ -117,4 +119,28 @@ public class RestClientTest {
         assertThat(comics.getData().getResults().get(0).getTitle()).contains("Amazing Spider-Man");
     }
 
+    @Test
+    public void testGetComicsEvents() throws Exception {
+        Result<Event> events = restClient.getComicsEvents(AMAZING_SPIDER_MAN_COMIC_ID);
+        assertThat(events.getData()).isNotNull();
+    }
+    @Test
+    public void testGetComicsCharacters() throws Exception {
+        Result<MarvelCharacter> characters = restClient.getComicsCharacters(AMAZING_SPIDER_MAN_COMIC_ID);
+        assertThat(characters.getData()).isNotNull();
+    }
+
+    @Test
+    public void testGetComicsCreators() throws Exception {
+        Result<Creator> creators = restClient.getComicsCreators(AMAZING_SPIDER_MAN_COMIC_ID);
+        assertThat(creators.getData()).isNotNull();
+    }
+
+    @Test
+    @Ignore
+    public void testGetComicsStories() throws Exception {
+        // issue with CollectionURI being a different data type
+        Result<Story> stories = restClient.getComicsStories(AMAZING_SPIDER_MAN_COMIC_ID);
+        assertThat(stories.getData()).isNotNull();
+    }
 }
