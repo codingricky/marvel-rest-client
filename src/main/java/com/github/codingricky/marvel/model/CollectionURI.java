@@ -2,9 +2,18 @@ package com.github.codingricky.marvel.model;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-class CollectionURI {
+public class CollectionURI {
+    private String collectionURI;
     private String service;
     private int id;
+
+    public String getCollectionURI() {
+        return collectionURI;
+    }
+
+    public void setCollectionURI(String collectionURI) {
+        this.collectionURI = collectionURI;
+    }
 
     public String getService() {
         return service;

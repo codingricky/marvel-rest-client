@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class SeriesList {
     private int available;
     private int returned;
-    private String collectionURI;
+    private CollectionURI collectionURI;
     private List<SeriesSummary> items;
 
     public int getAvailable() {
@@ -26,11 +26,11 @@ public class SeriesList {
         this.returned = returned;
     }
 
-    public String getCollectionURI() {
+    public CollectionURI getCollectionURI() {
         return collectionURI;
     }
 
-    public void setCollectionURI(String collectionURI) {
+    public void setCollectionURI(CollectionURI collectionURI) {
         this.collectionURI = collectionURI;
     }
 

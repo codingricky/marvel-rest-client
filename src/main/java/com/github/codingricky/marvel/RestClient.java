@@ -1,9 +1,11 @@
 package com.github.codingricky.marvel;
 
-import java.io.IOException;
-
+import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.github.codingricky.marvel.model.CollectionURI;
+import com.github.codingricky.marvel.model.CollectionURIDeserializer;
 import com.github.codingricky.marvel.model.Comic;
 import com.github.codingricky.marvel.model.Creator;
 import com.github.codingricky.marvel.model.Event;
@@ -12,6 +14,8 @@ import com.github.codingricky.marvel.model.Result;
 import com.github.codingricky.marvel.model.Series;
 import com.github.codingricky.marvel.model.Story;
 import us.monoid.web.Resty;
+
+import java.io.IOException;
 
 public class RestClient {
 
@@ -72,7 +76,7 @@ public class RestClient {
     }
 
     public Result<Creator> getComicsCreators(int comicId) throws IOException {
-        final String result = getURL(urlFactory.getComicsCharactersURL(comicId));
+        final String result = getURL(urlFactory.getComicsCreatorsURL(comicId));
         return convertToResult(Creator.class, result);
     }
 
@@ -81,8 +85,102 @@ public class RestClient {
         return convertToResult(MarvelCharacter.class, result);
     }
 
+    public Result<Event> getEvents() throws IOException {
+        final String result = getURL(urlFactory.getEventsURL());
+        return convertToResult(Event.class, result);
+    }
+
+    public Result<Event> getEvents(int eventId) throws IOException {
+        final String result = getURL(urlFactory.getEventsURL(eventId));
+        return convertToResult(Event.class, result);
+    }
+
+    public Result<MarvelCharacter> getEventsCharacters(int eventId) throws IOException {
+        final String result = getURL(urlFactory.getEventsCharactersURL(eventId));
+        return convertToResult(MarvelCharacter.class, result);
+    }
+
+    public Result<Comic> getEventsComics(int eventId) throws IOException {
+        final String result = getURL(urlFactory.getEventsComicsURL(eventId));
+        return convertToResult(Comic.class, result);
+    }
+
+    public Result<Creator> getEventsCreators(int eventId) throws IOException {
+        final String result = getURL(urlFactory.getEventsCreatorsURL(eventId));
+        return convertToResult(Creator.class, result);
+    }
+
+    public Result<Story> getEventsStories(int eventId) throws IOException {
+        final String result = getURL(urlFactory.getEventsStoriesURL(eventId));
+        return convertToResult(Story.class, result);
+    }
+
+    public Result<Series> getSeries() throws IOException {
+        final String result = getURL(urlFactory.getSeriesURL());
+        return convertToResult(Series.class, result);
+    }
+
+    public Result<Series> getSeries(int seriesId) throws IOException {
+        final String result = getURL(urlFactory.getSeriesURL(seriesId));
+        return convertToResult(Series.class, result);
+    }
+
+    public Result<MarvelCharacter> getSeriesCharacters(int seriesId) throws IOException {
+        final String result = getURL(urlFactory.getSeriesCharactersURL(seriesId));
+        return convertToResult(MarvelCharacter.class, result);
+    }
+
+    public Result<Comic> getSeriesComics(int seriesId) throws IOException {
+        final String result = getURL(urlFactory.getSeriesComicsURL(seriesId));
+        return convertToResult(Comic.class, result);
+    }
+
+    public Result<Creator> getSeriesCreators(int seriesId) throws IOException {
+        final String result = getURL(urlFactory.getSeriesCreatorsURL(seriesId));
+        return convertToResult(Creator.class, result);
+    }
+
+    public Result<Story> getSeriesStories(int seriesId) throws IOException {
+        final String result = getURL(urlFactory.getSeriesStoriesURL(seriesId));
+        return convertToResult(Story.class, result);
+    }
+
+    public Result<Story> getStories() throws IOException {
+        final String result = getURL(urlFactory.getStoriesURL());
+        return convertToResult(Story.class, result);
+    }
+
+    public Result<Story> getStories(int storyId) throws IOException {
+        final String result = getURL(urlFactory.getStoriesURL(storyId));
+        return convertToResult(Story.class, result);
+    }
+
+    public Result<MarvelCharacter> getStoriesCharacters(int storyid) throws IOException {
+        final String result = getURL(urlFactory.getStoriesCharactersURL(storyid));
+        return convertToResult(MarvelCharacter.class, result);
+    }
+
+    public Result<Comic> getStoriesComics(int storyId) throws IOException {
+        final String result = getURL(urlFactory.getStoriesComicsURL(storyId));
+        return convertToResult(Comic.class, result);
+    }
+
+    public Result<Creator> getStoriesCreators(int storyId) throws IOException {
+        final String result = getURL(urlFactory.getStoriesCreatorsURL(storyId));
+        return convertToResult(Creator.class, result);
+    }
+
+    public Result<Series> getStoriesSeries(int storyId) throws IOException {
+        final String result = getURL(urlFactory.getStoriesSeriesURL(storyId));
+        return convertToResult(Series.class, result);
+    }
+
     private <T> Result<T> convertToResult(Class clazz, String result) throws IOException {
         final ObjectMapper objectMapper = new ObjectMapper();
+        SimpleModule module = new SimpleModule("CollectionURIDeserializerModule",
+                new Version(1, 0, 0, null));
+        module.addDeserializer(CollectionURI.class, new CollectionURIDeserializer());
+        objectMapper.registerModule(module);
         JavaType javaType = objectMapper.getTypeFactory().constructParametricType(Result.class, clazz);
         return objectMapper.readValue(result, javaType);
     }
@@ -90,5 +188,4 @@ public class RestClient {
     private String getURL(String url) throws IOException {
         return new Resty().text(url).toString();
     }
-
 }

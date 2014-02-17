@@ -22,6 +22,8 @@ public class RestClientTest {
     private static final int AMAZING_SPIDER_MAN_COMIC_ID = 6908;
     private static final int AVENGERS_COMIC_ID = 17519;
     private static final int BLACK_WIDOW_ID = 1009189;
+    private static final int ACTS_OF_VENGEANCE_EVENT_ID = 116;
+    private static final int FIFTEEN_LOVE_SERIES_ID = 13379;
 
     private RestClient restClient;
 
@@ -137,10 +139,87 @@ public class RestClientTest {
     }
 
     @Test
-    @Ignore
     public void testGetComicsStories() throws Exception {
-        // issue with CollectionURI being a different data type
         Result<Story> stories = restClient.getComicsStories(AMAZING_SPIDER_MAN_COMIC_ID);
+        assertThat(stories.getData()).isNotNull();
+    }
+
+    @Test
+    public void testGetEvents() throws Exception {
+        Result<Event> events = restClient.getEvents();
+        assertThat(events.getData()).isNotNull();
+    }
+
+    @Test
+    public void testGetEventsByEventId() throws Exception {
+        Result<Event> events = restClient.getEvents(ACTS_OF_VENGEANCE_EVENT_ID);
+        assertThat(events.getData()).isNotNull();
+        assertThat(events.getData().getResults().get(0).getTitle()).contains("Acts of Vengeance!");
+    }
+
+    @Test
+    public void testGetEventsCharacters() throws Exception {
+        Result<MarvelCharacter> characters = restClient.getEventsCharacters(ACTS_OF_VENGEANCE_EVENT_ID);
+        assertThat(characters.getData()).isNotNull();
+    }
+
+    @Test
+    public void testGetEventsComics() throws Exception {
+        Result<Comic> comics = restClient.getEventsComics(ACTS_OF_VENGEANCE_EVENT_ID);
+        assertThat(comics.getData()).isNotNull();
+    }
+
+    @Test
+    public void testGetEventsCreators() throws Exception {
+        Result<Creator> creators = restClient.getEventsCreators(ACTS_OF_VENGEANCE_EVENT_ID);
+        assertThat(creators.getData()).isNotNull();
+    }
+
+    @Test
+    public void testGetEventsStories() throws Exception {
+        Result<Story> stories = restClient.getEventsStories(ACTS_OF_VENGEANCE_EVENT_ID);
+        assertThat(stories.getData()).isNotNull();
+    }
+
+    @Test
+    public void testGetSeries() throws Exception {
+        Result<Series> series = restClient.getSeries();
+        assertThat(series.getData()).isNotNull();
+    }
+
+    @Test
+    public void testGetSeriesBySeriesId() throws Exception {
+        Result<Series> series = restClient.getSeries(FIFTEEN_LOVE_SERIES_ID);
+        assertThat(series.getData()).isNotNull();
+    }
+
+    @Test
+    public void testGetSeriesCharacters() throws Exception {
+        Result<MarvelCharacter> characters = restClient.getSeriesCharacters(FIFTEEN_LOVE_SERIES_ID);
+        assertThat(characters.getData()).isNotNull();
+    }
+
+    @Test
+    public void testGetSeriesComics() throws Exception {
+        Result<Comic> comics = restClient.getSeriesComics(FIFTEEN_LOVE_SERIES_ID);
+        assertThat(comics.getData()).isNotNull();
+    }
+
+    @Test
+    public void testGetSeriesCreators() throws Exception {
+        Result<Creator> creators = restClient.getSeriesCreators(FIFTEEN_LOVE_SERIES_ID);
+        assertThat(creators.getData()).isNotNull();
+    }
+
+    @Test
+    public void testGetSeriesStories() throws Exception {
+        Result<Story> stories = restClient.getSeriesStories(FIFTEEN_LOVE_SERIES_ID);
+        assertThat(stories.getData()).isNotNull();
+    }
+
+    @Test
+    public void testGetStories() throws Exception {
+        Result<Story> stories = restClient.getStories();
         assertThat(stories.getData()).isNotNull();
     }
 }

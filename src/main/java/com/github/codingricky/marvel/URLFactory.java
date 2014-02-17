@@ -100,4 +100,112 @@ public class URLFactory {
         urlBuilder = addAuthorisationParameters(urlBuilder);
         return urlBuilder.toString();
     }
+
+    public String getEventsURL() {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "events");
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
+    }
+
+    public String getEventsURL(int eventId) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "events/" + eventId);
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
+    }
+
+    public String getEventsCharactersURL(int eventId) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "events/" + eventId + "/characters");
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
+    }
+
+    public String getEventsStoriesURL(int eventId) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "events/" + eventId + "/stories");
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
+    }
+
+    public String getEventsCreatorsURL(int eventId) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "events/" + eventId + "/creators");
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
+    }
+
+    public String getEventsComicsURL(int eventId) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "events/" + eventId + "/comics");
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
+    }
+
+    public String getSeriesURL() {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "series");
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
+    }
+
+    public String getSeriesURL(int seriesId) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "series/" + seriesId);
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
+    }
+
+    public String getSeriesCharactersURL(int seriesId) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "series/" + seriesId + "/characters");
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
+    }
+
+    public String getSeriesComicsURL(int seriesId) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "series/" + seriesId + "/comics");
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
+    }
+
+    public String getSeriesCreatorsURL(int seriesId) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "series/" + seriesId + "/creators");
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
+    }
+
+    public String getSeriesStoriesURL(int seriesId) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "series/" + seriesId + "/stories");
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
+    }
+
+    public String getStoriesURL() {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "stories");
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
+    }
+
+    public String getStoriesURL(int storyId) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "stories/" + storyId);
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
+    }
+
+    public String getStoriesCharactersURL(int storyId) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "stories/" + storyId + "/characters");
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
+    }
+
+    public String getStoriesComicsURL(int storyId) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "stories/" + storyId + "/comics");
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
+    }
+
+    public String getStoriesCreatorsURL(int storyId) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "stories/" + storyId + "/creators");
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
+    }
+
+    public String getStoriesSeriesURL(int storyId) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "stories/" + storyId + "/series");
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
+    }
 }
