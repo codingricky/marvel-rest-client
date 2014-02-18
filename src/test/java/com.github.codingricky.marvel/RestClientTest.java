@@ -12,7 +12,6 @@ import com.github.codingricky.marvel.model.Series;
 import com.github.codingricky.marvel.model.Story;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.fest.assertions.Assertions.assertThat;
@@ -24,6 +23,7 @@ public class RestClientTest {
     private static final int BLACK_WIDOW_ID = 1009189;
     private static final int ACTS_OF_VENGEANCE_EVENT_ID = 116;
     private static final int FIFTEEN_LOVE_SERIES_ID = 13379;
+    private static final int STORY_ID = 3;
 
     private RestClient restClient;
 
@@ -126,6 +126,7 @@ public class RestClientTest {
         Result<Event> events = restClient.getComicsEvents(AMAZING_SPIDER_MAN_COMIC_ID);
         assertThat(events.getData()).isNotNull();
     }
+
     @Test
     public void testGetComicsCharacters() throws Exception {
         Result<MarvelCharacter> characters = restClient.getComicsCharacters(AMAZING_SPIDER_MAN_COMIC_ID);
@@ -221,5 +222,31 @@ public class RestClientTest {
     public void testGetStories() throws Exception {
         Result<Story> stories = restClient.getStories();
         assertThat(stories.getData()).isNotNull();
+        System.out.println(stories.getData());
     }
+
+    @Test
+    public void testGetStoriesByStoryId() throws Exception {
+        Result<Story> stories = restClient.getStories(STORY_ID);
+        assertThat(stories.getData()).isNotNull();
+    }
+
+    @Test
+    public void testGetStoriesCharacters() throws Exception {
+        Result<MarvelCharacter> characters = restClient.getStoriesCharacters(STORY_ID);
+        assertThat(characters.getData()).isNotNull();
+    }
+
+    @Test
+    public void testGetStoriesComics() throws Exception {
+        Result<Comic> comics = restClient.getStoriesComics(STORY_ID);
+        assertThat(comics.getData()).isNotNull();
+    }
+
+    @Test
+    public void testGetStoriesCreators() throws Exception {
+        Result<Creator> creators = restClient.getStoriesCreators(STORY_ID);
+        assertThat(creators.getData()).isNotNull();
+    }
+
 }

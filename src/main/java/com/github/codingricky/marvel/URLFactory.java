@@ -202,10 +202,4 @@ public class URLFactory {
         urlBuilder = addAuthorisationParameters(urlBuilder);
         return urlBuilder.toString();
     }
-
-    public String getStoriesSeriesURL(int storyId) {
-        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "stories/" + storyId + "/series");
-        urlBuilder = addAuthorisationParameters(urlBuilder);
-        return urlBuilder.toString();
-    }
 }

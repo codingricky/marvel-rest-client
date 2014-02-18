@@ -170,11 +170,6 @@ public class RestClient {
         return convertToResult(Creator.class, result);
     }
 
-    public Result<Series> getStoriesSeries(int storyId) throws IOException {
-        final String result = getURL(urlFactory.getStoriesSeriesURL(storyId));
-        return convertToResult(Series.class, result);
-    }
-
     private <T> Result<T> convertToResult(Class clazz, String result) throws IOException {
         final ObjectMapper objectMapper = new ObjectMapper();
         SimpleModule module = new SimpleModule("CollectionURIDeserializerModule",
