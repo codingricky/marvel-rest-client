@@ -20,9 +20,17 @@ import java.io.IOException;
 public class RestClient {
 
     private final URLFactory urlFactory;
+    private final ObjectMapper objectMapper;
+    private final Resty resty;
 
     public RestClient(String privateKey, String publicKey) {
         this.urlFactory = new URLFactory(privateKey, publicKey);
+        this.objectMapper = new ObjectMapper();
+        SimpleModule module = new SimpleModule("CollectionURIDeserializerModule",
+                new Version(1, 0, 0, null, null, null));
+        module.addDeserializer(CollectionURI.class, new CollectionURIDeserializer());
+        objectMapper.registerModule(module);
+        this.resty = new Resty();
     }
 
     public Result<Comic> getCharactersComics(int characterId) throws IOException {
@@ -171,16 +179,11 @@ public class RestClient {
     }
 
     private <T> Result<T> convertToResult(Class clazz, String result) throws IOException {
-        final ObjectMapper objectMapper = new ObjectMapper();
-        SimpleModule module = new SimpleModule("CollectionURIDeserializerModule",
-                new Version(1, 0, 0, null));
-        module.addDeserializer(CollectionURI.class, new CollectionURIDeserializer());
-        objectMapper.registerModule(module);
         JavaType javaType = objectMapper.getTypeFactory().constructParametricType(Result.class, clazz);
         return objectMapper.readValue(result, javaType);
     }
 
     private String getURL(String url) throws IOException {
-        return new Resty().text(url).toString();
+        return resty.text(url).toString();
     }
 }
