@@ -3,7 +3,14 @@ jdk:
 - oraclejdk8
 - oraclejdk7
 - openjdk6
+before_install: git clone -b travis `git config --get remote.origin.url` target/travis
+script: mvn deploy --settings target/travis/settings/settings.xml
+branches:
+  only:
+  - master
 env:
   global:
-    - PUBLIC_KEY=2b174f8c26f6e5590c1980cd42a7d093
-    - secure: b4blKpsY6SNyC71vk945H9Dub069AERcZtlALpzWfnyWSnpkN29wd7EeIUxYb1k7wvtj+R5kwVV/VxMKZricKUDWxP1tZgl/+Vp99HI5uAkJBMHyi8Ee8U4TKZ7qYy2tyH3sNTsLgv/R2A6Uxtd34zBQr4Lozu+z2gK8QwMcLv4=
+  - PUBLIC_KEY=2b174f8c26f6e5590c1980cd42a7d093
+  - secure: b4blKpsY6SNyC71vk945H9Dub069AERcZtlALpzWfnyWSnpkN29wd7EeIUxYb1k7wvtj+R5kwVV/VxMKZricKUDWxP1tZgl/+Vp99HI5uAkJBMHyi8Ee8U4TKZ7qYy2tyH3sNTsLgv/R2A6Uxtd34zBQr4Lozu+z2gK8QwMcLv4=
+  - secure: AY4Fcdop9IenqbTRr6Dr1x0N9dOA7szRumVGWLYVeqOmBsWq6N/nkIatflFeI72EmW7q6emzBBgDXuk03QEWhV69PI1So4G2hbSL4kh920zd+olO48EiAfthUVVgJb+T6EqPQ97mHuXa1d8HRyUSNxKvwEAdIvswXNIMSVNieWw=
+  - secure: RcStsJv3XwlKbvkcMkDkJmMMUnC2/ih8g8iR4B/sND5GBSut+76VCmY5TbrnNi3537E2P3uYaWMawOqZMoFVJ55mu8P53SEx3dgw3lKIoubShxQreII5ZStApbRdah7KZ0y3zs5yCdLVnx3cqWPqh5sJtUXYpTw9Pmo+5JgLw9A=
