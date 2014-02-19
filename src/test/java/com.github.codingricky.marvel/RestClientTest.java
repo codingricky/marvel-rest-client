@@ -46,13 +46,13 @@ public class RestClientTest {
 
     @Test
     public void testGetCharacters() throws IOException {
-        Result<MarvelCharacter> characters = restClient.getCharacters(new ParameterBuilder().withLimit(5).create());
+        Result<MarvelCharacter> characters = restClient.getCharacters(new CharacterParameterBuilder().withLimit(5).create());
         assertThat(characters.getData().getCount()).isEqualTo(5);
     }
 
     @Test
     public void testGetCharactersWithName() throws IOException {
-        Result<MarvelCharacter> characters = restClient.getCharacters(new ParameterBuilder().withName("Black Widow").create());
+        Result<MarvelCharacter> characters = restClient.getCharacters(new CharacterParameterBuilder().withName("Black Widow").create());
         assertThat(characters.getData().getTotal()).isEqualTo(1);
         MarvelCharacter blackWidow = characters.getData().getResults().get(0);
         assertThat(blackWidow.getName()).isEqualTo("Black Widow");
@@ -61,7 +61,7 @@ public class RestClientTest {
 
     @Test
     public void testGetCharactersWithComics() throws IOException {
-        Result<MarvelCharacter> characters = restClient.getCharacters(new ParameterBuilder().withName("Black Widow").addComic(AVENGERS_COMIC_ID).orderBy("name").create());
+        Result<MarvelCharacter> characters = restClient.getCharacters(new CharacterParameterBuilder().withName("Black Widow").addComic(AVENGERS_COMIC_ID).orderBy("name").create());
 
         assertThat(characters.getData().getCount()).isEqualTo(1);
         final List<MarvelCharacter> results = characters.getData().getResults();
@@ -71,7 +71,7 @@ public class RestClientTest {
 
     @Test
     public void testGetCharactersOrderBy() throws IOException {
-        Result<MarvelCharacter> characters = restClient.getCharacters(new ParameterBuilder().addComic(AMAZING_SPIDER_MAN_COMIC_ID).orderBy("-name").orderBy("modified").create());
+        Result<MarvelCharacter> characters = restClient.getCharacters(new CharacterParameterBuilder().addComic(AMAZING_SPIDER_MAN_COMIC_ID).orderBy("-name").orderBy("modified").create());
         final List<MarvelCharacter> results = characters.getData().getResults();
 
         assertThat(results.get(0).getName()).isEqualTo("Spider-Man");

@@ -26,10 +26,10 @@ public class URLFactory {
         return urlBuilder.toString();
     }
 
-    public String getCharactersURL(Parameters parameters) {
+    public String getCharactersURL(CharacterParameters characterParameters) {
         UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "characters");
         long timeStamp = System.currentTimeMillis();
-        urlBuilder = parameters.addParameters(urlBuilder).addParameter("ts", String.valueOf(timeStamp))
+        urlBuilder = characterParameters.addParameters(urlBuilder).addParameter("ts", String.valueOf(timeStamp))
                 .addParameter("apikey", publicKey)
                 .addParameter("hash", createHash(timeStamp));
         return urlBuilder.toString();

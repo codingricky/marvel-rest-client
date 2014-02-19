@@ -4,7 +4,7 @@ import java.util.Date;
 
 import gumi.builders.UrlBuilder;
 
-public class Parameters {
+public class CharacterParameters {
     private String name;
     private Date modifiedSince;
     private StringBuilder comics;

@@ -53,8 +53,8 @@ public class RestClient {
         return convertToResult(Series.class, result);
     }
 
-    public Result<MarvelCharacter> getCharacters(Parameters parameters) throws IOException {
-        final String result = getURL(urlFactory.getCharactersURL(parameters));
+    public Result<MarvelCharacter> getCharacters(CharacterParameters characterParameters) throws IOException {
+        final String result = getURL(urlFactory.getCharactersURL(characterParameters));
         return convertToResult(MarvelCharacter.class, result);
     }
 
