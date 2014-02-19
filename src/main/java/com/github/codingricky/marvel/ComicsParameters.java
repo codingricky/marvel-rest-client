@@ -2,6 +2,7 @@ package com.github.codingricky.marvel;
 
 import java.util.Date;
 
+import gumi.builders.UrlBuilder;
 import org.apache.commons.lang3.Range;
 
 public class ComicsParameters {
@@ -21,6 +22,21 @@ public class ComicsParameters {
     private StringBuilder orderBy;
     private int limit;
     private int offset;
+
+    public UrlBuilder addParameters(UrlBuilder urlBuilder) {
+        addParameter(format, "format", urlBuilder);
+        addParameter(formatType, "formatType", urlBuilder);
+        addParameter(noVariants, "noVariants", urlBuilder);
+        addParameter(dateDescriptor, "dateDescriptor", urlBuilder);
+
+        return urlBuilder;
+    }
+
+    private <T> void addParameter(T parameter, String parameterName, UrlBuilder urlBuilder) {
+        if (urlBuilder == null) return;
+
+        urlBuilder.addParameter(parameterName, parameter.toString());
+    }
 
     public void setFormat(Format format) {
         this.format = format;
