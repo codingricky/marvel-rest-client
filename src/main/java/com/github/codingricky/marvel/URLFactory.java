@@ -1,5 +1,7 @@
 package com.github.codingricky.marvel;
 
+import com.github.codingricky.marvel.parameter.CharacterParameters;
+import com.github.codingricky.marvel.parameter.ComicsParameters;
 import gumi.builders.UrlBuilder;
 import org.apache.commons.codec.digest.DigestUtils;
 

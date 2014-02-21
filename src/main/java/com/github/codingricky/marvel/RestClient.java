@@ -13,6 +13,8 @@ import com.github.codingricky.marvel.model.MarvelCharacter;
 import com.github.codingricky.marvel.model.Result;
 import com.github.codingricky.marvel.model.Series;
 import com.github.codingricky.marvel.model.Story;
+import com.github.codingricky.marvel.parameter.CharacterParameters;
+import com.github.codingricky.marvel.parameter.ComicsParameters;
 import us.monoid.web.Resty;
 
 import java.io.IOException;

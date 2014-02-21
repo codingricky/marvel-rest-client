@@ -1,4 +1,4 @@
-package com.github.codingricky.marvel;
+package com.github.codingricky.marvel.parameter;
 
 import java.util.Date;
 
