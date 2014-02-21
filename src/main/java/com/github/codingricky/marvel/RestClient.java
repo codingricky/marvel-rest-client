@@ -38,6 +38,11 @@ public class RestClient {
         return convertToResult(Comic.class, result);
     }
 
+    public Result<Comic> getCharactersComics(ComicsParameters comicsParameters) throws IOException {
+        final String result = getURL(urlFactory.getCharactersComicsURL(comicsParameters));
+        return convertToResult(Comic.class, result);
+    }
+
     public Result<Event> getCharactersEvents(int characterId) throws IOException {
         final String result = getURL(urlFactory.getCharactersEventURL(characterId));
         return convertToResult(Event.class, result);

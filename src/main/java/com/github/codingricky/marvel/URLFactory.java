@@ -65,6 +65,11 @@ public class URLFactory {
         return urlBuilder.toString();
     }
 
+    public String getCharactersComicsURL(ComicsParameters comicsParameters) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "characters/" + comicsParameters.getId() + "/comics");
+        return addAuthorisationParameters(comicsParameters.addParameters(urlBuilder)).toString();
+    }
+
     public String getComicsCreatorsURL(int comicId) {
         UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "comics/" + comicId + "/creators");
         urlBuilder = addAuthorisationParameters(urlBuilder);

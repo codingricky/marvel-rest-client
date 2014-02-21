@@ -91,6 +91,12 @@ public class RestClientTest {
     }
 
     @Test
+    public void testGetCharactersComicsWithParameters() throws IOException {
+        Result<Comic> comics = restClient.getCharactersComics(new ComicsParameterBuilder(AVENGERS_COMIC_ID).withLimit(3).create());
+        assertThat(comics.getData().getLimit()).isEqualTo(3);
+    }
+
+    @Test
     public void testGetCharactersEvents() throws IOException {
         Result<Event> events = restClient.getCharactersEvents(BLACK_WIDOW_ID);
         assertThat(events.getData()).isNotNull();
@@ -222,7 +228,6 @@ public class RestClientTest {
     public void testGetStories() throws Exception {
         Result<Story> stories = restClient.getStories();
         assertThat(stories.getData()).isNotNull();
-        System.out.println(stories.getData());
     }
 
     @Test
