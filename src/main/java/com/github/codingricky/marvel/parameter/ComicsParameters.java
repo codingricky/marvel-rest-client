@@ -24,7 +24,7 @@ public class ComicsParameters extends AbstractParameters {
     private List<String> stories = new ArrayList<String>();
     private List<String> sharedAppearances = new ArrayList<String>();
     private List<String> collaborators = new ArrayList<String>();
-    private List<OrderBy> orderBy = new ArrayList<OrderBy>();
+    private List<ComicsOrderBy> orderBy = new ArrayList<ComicsOrderBy>();
     private Integer limit;
     private Integer offset;
 
@@ -56,7 +56,6 @@ public class ComicsParameters extends AbstractParameters {
         urlBuilder = addParameterToUrl(limit, "limit", urlBuilder);
         urlBuilder = addParameterToUrl(offset, "offset", urlBuilder);
 
-        System.out.println(urlBuilder);
         return urlBuilder;
     }
 
@@ -88,7 +87,7 @@ public class ComicsParameters extends AbstractParameters {
         collaborators.add(String.valueOf(parameter));
     }
 
-    public void addOrderBy(OrderBy orderBy) {
+    public void addOrderBy(ComicsOrderBy orderBy) {
         this.orderBy.add(orderBy);
     }
 
