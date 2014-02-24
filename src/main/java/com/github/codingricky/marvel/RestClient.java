@@ -15,11 +15,16 @@ import com.github.codingricky.marvel.model.Series;
 import com.github.codingricky.marvel.model.Story;
 import com.github.codingricky.marvel.parameter.CharacterParameters;
 import com.github.codingricky.marvel.parameter.ComicsParameters;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import us.monoid.web.Resty;
 
 import java.io.IOException;
 
 public class RestClient {
+
+    private static final Logger logger = LoggerFactory.getLogger(RestClient.class);
+
 
     private final URLFactory urlFactory;
     private final ObjectMapper objectMapper;
@@ -191,6 +196,7 @@ public class RestClient {
     }
 
     private String getURL(String url) throws IOException {
+        logger.info("getting " + url);
         return resty.text(url).toString();
     }
 }
