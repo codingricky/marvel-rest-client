@@ -10,8 +10,8 @@ import com.github.codingricky.marvel.model.Series;
 import com.github.codingricky.marvel.model.Story;
 import com.github.codingricky.marvel.parameter.CharacterOrderBy;
 import com.github.codingricky.marvel.parameter.CharacterParameterBuilder;
-import com.github.codingricky.marvel.parameter.ComicsOrderBy;
-import com.github.codingricky.marvel.parameter.ComicsParameterBuilder;
+import com.github.codingricky.marvel.parameter.ComicOrderBy;
+import com.github.codingricky.marvel.parameter.ComicParameterBuilder;
 import org.junit.Test;
 
 import static org.fest.assertions.Assertions.assertThat;
@@ -43,10 +43,10 @@ public class CharactersRestTest extends AbstractRestTest {
 
     @Test
     public void testGetCharactersComicsWithParameters() throws IOException {
-        Result<Comic> comics = restClient.getCharactersComics(new ComicsParameterBuilder(AVENGERS_COMIC_ID)
+        Result<Comic> comics = restClient.getCharactersComics(new ComicParameterBuilder(AVENGERS_COMIC_ID)
                 .withLimit(3)
-                .addOrderBy(ComicsOrderBy.FOC_DATE_ASC)
-                .addOrderBy(ComicsOrderBy.ISSUE_NUMBER_DESC).create());
+                .addOrderBy(ComicOrderBy.FOC_DATE_ASC)
+                .addOrderBy(ComicOrderBy.ISSUE_NUMBER_DESC).create());
         assertThat(comics.getData()).isNotNull();
     }
 

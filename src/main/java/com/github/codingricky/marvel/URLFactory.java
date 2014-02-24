@@ -1,7 +1,7 @@
 package com.github.codingricky.marvel;
 
 import com.github.codingricky.marvel.parameter.CharacterParameters;
-import com.github.codingricky.marvel.parameter.ComicsParameters;
+import com.github.codingricky.marvel.parameter.ComicParameters;
 import gumi.builders.UrlBuilder;
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -67,9 +67,9 @@ public class URLFactory {
         return urlBuilder.toString();
     }
 
-    public String getCharactersComicsURL(ComicsParameters comicsParameters) {
-        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "characters/" + comicsParameters.getId() + "/comics");
-        return addAuthorisationParameters(comicsParameters.addParameters(urlBuilder)).toString();
+    public String getCharactersComicsURL(ComicParameters comicParameters) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "characters/" + comicParameters.getId() + "/comics");
+        return addAuthorisationParameters(comicParameters.addParameters(urlBuilder)).toString();
     }
 
     public String getComicsCreatorsURL(int comicId) {
@@ -88,18 +88,6 @@ public class URLFactory {
         UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "comics/" + comicId + "/stories");
         urlBuilder = addAuthorisationParameters(urlBuilder);
         return urlBuilder.toString();
-    }
-
-    private UrlBuilder addAuthorisationParameters(UrlBuilder urlBuilder) {
-        long timeStamp = System.currentTimeMillis();
-        return urlBuilder.addParameter("ts", String.valueOf(timeStamp))
-                .addParameter("apikey", publicKey)
-                .addParameter("hash", createHash(timeStamp));
-    }
-
-    private String createHash(long timeStamp) {
-        String stringToHash = timeStamp + privateKey + publicKey;
-        return DigestUtils.md5Hex(stringToHash);
     }
 
     public String getComicsURL(int comicId) {
@@ -208,5 +196,17 @@ public class URLFactory {
         UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "stories/" + storyId + "/creators");
         urlBuilder = addAuthorisationParameters(urlBuilder);
         return urlBuilder.toString();
+    }
+
+    private UrlBuilder addAuthorisationParameters(UrlBuilder urlBuilder) {
+        long timeStamp = System.currentTimeMillis();
+        return urlBuilder.addParameter("ts", String.valueOf(timeStamp))
+                .addParameter("apikey", publicKey)
+                .addParameter("hash", createHash(timeStamp));
+    }
+
+    private String createHash(long timeStamp) {
+        String stringToHash = timeStamp + privateKey + publicKey;
+        return DigestUtils.md5Hex(stringToHash);
     }
 }

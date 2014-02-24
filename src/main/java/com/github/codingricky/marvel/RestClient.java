@@ -14,7 +14,7 @@ import com.github.codingricky.marvel.model.Result;
 import com.github.codingricky.marvel.model.Series;
 import com.github.codingricky.marvel.model.Story;
 import com.github.codingricky.marvel.parameter.CharacterParameters;
-import com.github.codingricky.marvel.parameter.ComicsParameters;
+import com.github.codingricky.marvel.parameter.ComicParameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import us.monoid.web.Resty;
@@ -24,7 +24,6 @@ import java.io.IOException;
 public class RestClient {
 
     private static final Logger logger = LoggerFactory.getLogger(RestClient.class);
-
 
     private final URLFactory urlFactory;
     private final ObjectMapper objectMapper;
@@ -45,8 +44,8 @@ public class RestClient {
         return convertToResult(Comic.class, result);
     }
 
-    public Result<Comic> getCharactersComics(ComicsParameters comicsParameters) throws IOException {
-        final String result = getURL(urlFactory.getCharactersComicsURL(comicsParameters));
+    public Result<Comic> getCharactersComics(ComicParameters comicParameters) throws IOException {
+        final String result = getURL(urlFactory.getCharactersComicsURL(comicParameters));
         return convertToResult(Comic.class, result);
     }
 

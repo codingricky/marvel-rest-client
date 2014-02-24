@@ -16,12 +16,12 @@ public class CharacterParameters extends AbstractParameters {
     private Integer offset;
 
     public UrlBuilder addParameters(UrlBuilder urlBuilder) {
-        urlBuilder = addParameterToUrl(name, "name", urlBuilder);
-        urlBuilder = addParameterToUrl(modifiedSince, "modifiedSince", urlBuilder);
-        urlBuilder = addParameterToUrl(comics, "comics", urlBuilder);
-        urlBuilder = addParameterToUrl(orderBy, "orderBy", urlBuilder);
-        urlBuilder = addParameterToUrl(limit, "limit", urlBuilder);
-        urlBuilder = addParameterToUrl(offset, "offset", urlBuilder);
+        urlBuilder = addParameterToUrl("name", name, urlBuilder);
+        urlBuilder = addParameterToUrl("modifiedSince", modifiedSince, urlBuilder);
+        urlBuilder = addParameterToUrl("comics", comics, urlBuilder);
+        urlBuilder = addParameterToUrl("orderBy", orderBy, urlBuilder);
+        urlBuilder = addParameterToUrl("limit", limit, urlBuilder);
+        urlBuilder = addParameterToUrl("offset", offset, urlBuilder);
         return urlBuilder;
     }
 

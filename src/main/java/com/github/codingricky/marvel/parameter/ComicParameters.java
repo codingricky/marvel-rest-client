@@ -8,7 +8,7 @@ import java.util.List;
 import gumi.builders.UrlBuilder;
 import org.apache.commons.lang3.Range;
 
-public class ComicsParameters extends AbstractParameters {
+public class ComicParameters extends AbstractParameters {
 
     private Integer id;
     private Format format;
@@ -24,37 +24,37 @@ public class ComicsParameters extends AbstractParameters {
     private List<String> stories = new ArrayList<String>();
     private List<String> sharedAppearances = new ArrayList<String>();
     private List<String> collaborators = new ArrayList<String>();
-    private List<ComicsOrderBy> orderBy = new ArrayList<ComicsOrderBy>();
+    private List<ComicOrderBy> orderBy = new ArrayList<ComicOrderBy>();
     private Integer limit;
     private Integer offset;
 
-    public ComicsParameters() {
+    public ComicParameters() {
     }
 
     public UrlBuilder addParameters(UrlBuilder urlBuilder) {
-        urlBuilder = addParameterToUrl(format, "format", urlBuilder);
-        urlBuilder = addParameterToUrl(formatType, "formatType", urlBuilder);
-        urlBuilder = addParameterToUrl(noVariants, "noVariants", urlBuilder);
-        urlBuilder = addParameterToUrl(dateDescriptor, "dateDescriptor", urlBuilder);
+        urlBuilder = addParameterToUrl("format", format, urlBuilder);
+        urlBuilder = addParameterToUrl("formatType", formatType, urlBuilder);
+        urlBuilder = addParameterToUrl("noVariants", noVariants, urlBuilder);
+        urlBuilder = addParameterToUrl("dateDescriptor", dateDescriptor, urlBuilder);
 
         if (dateRange != null) {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String low = simpleDateFormat.format(dateRange.getMinimum());
             String high = simpleDateFormat.format(dateRange.getMaximum());
-            urlBuilder = addParameterToUrl(String.format("%s,%s", low, high), "dateRange", urlBuilder);
+            urlBuilder = addParameterToUrl("dateRange", String.format("%s,%s", low, high), urlBuilder);
         }
 
-        urlBuilder = addParameterToUrl(hasDigitalIssue, "hasDigitalIssue", urlBuilder);
-        urlBuilder = addParameterToUrl(modifiedSince, "modifiedSince", urlBuilder);
-        urlBuilder = addParameterToUrl(creators, "creators", urlBuilder);
-        urlBuilder = addParameterToUrl(series, "series", urlBuilder);
-        urlBuilder = addParameterToUrl(events, "events", urlBuilder);
-        urlBuilder = addParameterToUrl(stories, "creators", urlBuilder);
-        urlBuilder = addParameterToUrl(sharedAppearances, "creators", urlBuilder);
-        urlBuilder = addParameterToUrl(collaborators, "collaborators", urlBuilder);
-        urlBuilder = addParameterToUrl(orderBy, "orderBy", urlBuilder);
-        urlBuilder = addParameterToUrl(limit, "limit", urlBuilder);
-        urlBuilder = addParameterToUrl(offset, "offset", urlBuilder);
+        urlBuilder = addParameterToUrl("hasDigitalIssue", hasDigitalIssue, urlBuilder);
+        urlBuilder = addParameterToUrl("modifiedSince", modifiedSince, urlBuilder);
+        urlBuilder = addParameterToUrl("creators", creators, urlBuilder);
+        urlBuilder = addParameterToUrl("series", series, urlBuilder);
+        urlBuilder = addParameterToUrl("events", events, urlBuilder);
+        urlBuilder = addParameterToUrl("creators", stories, urlBuilder);
+        urlBuilder = addParameterToUrl("creators", sharedAppearances, urlBuilder);
+        urlBuilder = addParameterToUrl("collaborators", collaborators, urlBuilder);
+        urlBuilder = addParameterToUrl("orderBy", orderBy, urlBuilder);
+        urlBuilder = addParameterToUrl("limit", limit, urlBuilder);
+        urlBuilder = addParameterToUrl("offset", offset, urlBuilder);
 
         return urlBuilder;
     }
@@ -87,7 +87,7 @@ public class ComicsParameters extends AbstractParameters {
         collaborators.add(String.valueOf(parameter));
     }
 
-    public void addOrderBy(ComicsOrderBy orderBy) {
+    public void addOrderBy(ComicOrderBy orderBy) {
         this.orderBy.add(orderBy);
     }
 

@@ -1,7 +1,6 @@
 package com.github.codingricky.marvel.parameter;
 
-// TODO Different OrderBys
-public enum ComicsOrderBy {
+public enum ComicOrderBy {
 
     FOC_DATE_ASC("focDate"),
     ON_SALE_DATE_ASC("onSaleDate"),
@@ -16,7 +15,7 @@ public enum ComicsOrderBy {
 
     private final String string;
 
-    private ComicsOrderBy(String string) {
+    private ComicOrderBy(String string) {
         this.string = string;
     }
 

@@ -13,7 +13,7 @@ public class SeriesParameters {
     private List<Integer> creators;
     private SeriesType seriesType;
     private List<Format> contains;
-    private List<ComicsOrderBy> orderBy;
+    private List<ComicOrderBy> orderBy;
     private Integer limit;
     private Integer offset;
 
@@ -53,7 +53,7 @@ public class SeriesParameters {
         this.contains = contains;
     }
 
-    public void setOrderBy(List<ComicsOrderBy> orderBy) {
+    public void setOrderBy(List<ComicOrderBy> orderBy) {
         this.orderBy = orderBy;
     }
 
