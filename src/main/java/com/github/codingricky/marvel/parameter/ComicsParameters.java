@@ -5,11 +5,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.google.common.base.Joiner;
 import gumi.builders.UrlBuilder;
 import org.apache.commons.lang3.Range;
 
-public class ComicsParameters {
+public class ComicsParameters extends AbstractParameters {
 
     private Integer id;
     private Format format;
@@ -25,7 +24,7 @@ public class ComicsParameters {
     private List<String> stories = new ArrayList<String>();
     private List<String> sharedAppearances = new ArrayList<String>();
     private List<String> collaborators = new ArrayList<String>();
-    private List<String> orderBy = new ArrayList<String>();
+    private List<OrderBy> orderBy = new ArrayList<OrderBy>();
     private Integer limit;
     private Integer offset;
 
@@ -89,18 +88,8 @@ public class ComicsParameters {
         collaborators.add(String.valueOf(parameter));
     }
 
-    public void addOrderBy(String orderBy) {
+    public void addOrderBy(OrderBy orderBy) {
         this.orderBy.add(orderBy);
-    }
-
-    private <T> UrlBuilder addParameterToUrl(T parameter, String parameterName, UrlBuilder urlBuilder) {
-        if (parameter == null) return urlBuilder;
-        if (parameter instanceof List) {
-            List parameterAsList = (List) parameter;
-            if (parameterAsList.isEmpty()) return urlBuilder;
-            parameterName = Joiner.on(',').join(parameterAsList);
-        }
-        return urlBuilder.addParameter(parameterName, parameter.toString());
     }
 
     public void setFormat(Format format) {

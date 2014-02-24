@@ -36,7 +36,7 @@ public class CharacterParameterBuilder {
         return this;
     }
 
-    public CharacterParameterBuilder orderBy(String orderBy) {
+    public CharacterParameterBuilder orderBy(CharacterOrderBy orderBy) {
         characterParameters.addOrderBy(orderBy);
         return this;
     }

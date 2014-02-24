@@ -1,5 +1,6 @@
 package com.github.codingricky.marvel.parameter;
 
+// TODO Different OrderBys
 public enum OrderBy {
     TITLE_ASC("title"),
     MODIFIED_ASC("modified"),

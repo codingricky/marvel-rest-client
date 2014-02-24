@@ -74,7 +74,7 @@ public class ComicsParameterBuilder {
         return this;
     }
 
-    public ComicsParameterBuilder addOrderBy(String orderBy) {
+    public ComicsParameterBuilder addOrderBy(OrderBy orderBy) {
         comicsParameters.addOrderBy(orderBy);
         return this;
     }

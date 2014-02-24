@@ -22,7 +22,6 @@ public class ComicsRestTest extends AbstractRestTest {
     public void testGetComicsById() throws Exception {
         Result<Comic> comics = restClient.getComics(AMAZING_SPIDER_MAN_COMIC_ID);
         assertThat(comics.getData()).isNotNull();
-        assertThat(comics.getData().getResults().get(0).getTitle()).contains("Amazing Spider-Man");
     }
 
     @Test

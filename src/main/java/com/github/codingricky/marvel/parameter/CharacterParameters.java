@@ -1,70 +1,40 @@
 package com.github.codingricky.marvel.parameter;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import gumi.builders.UrlBuilder;
 
-public class CharacterParameters {
+public class CharacterParameters extends AbstractParameters {
     private String name;
     private Date modifiedSince;
-    private StringBuilder comics;
-    private StringBuilder series;
-    private StringBuilder orderBy;
+    private List<Integer> comics = new ArrayList<Integer>();
+    private List<Integer> series = new ArrayList<Integer>();
+    private List<CharacterOrderBy> orderBy = new ArrayList<CharacterOrderBy>();
     private Integer limit;
     private Integer offset;
 
     public UrlBuilder addParameters(UrlBuilder urlBuilder) {
-        if (name != null) {
-            urlBuilder = urlBuilder.addParameter("name", name);
-        }
-        if (modifiedSince != null) {
-            // TODO check date format
-            urlBuilder = urlBuilder.addParameter("modifiedSince", modifiedSince.toString());
-        }
-        if (comics != null) {
-            urlBuilder = urlBuilder.addParameter("comics", comics.toString());
-        }
-        if (series != null) {
-            urlBuilder = urlBuilder.addParameter("series", series.toString());
-        }
-        if (limit != null) {
-            urlBuilder = urlBuilder.addParameter("limit", limit.toString());
-        }
-        if (offset != null) {
-            urlBuilder = urlBuilder.addParameter("offset", offset.toString());
-        }
-        if (orderBy != null) {
-            urlBuilder = urlBuilder.addParameter("orderBy", orderBy.toString());
-        }
-
+        urlBuilder = addParameterToUrl(name, "name", urlBuilder);
+        urlBuilder = addParameterToUrl(modifiedSince, "modifiedSince", urlBuilder);
+        urlBuilder = addParameterToUrl(comics, "comics", urlBuilder);
+        urlBuilder = addParameterToUrl(orderBy, "orderBy", urlBuilder);
+        urlBuilder = addParameterToUrl(limit, "limit", urlBuilder);
+        urlBuilder = addParameterToUrl(offset, "offset", urlBuilder);
         return urlBuilder;
     }
 
-    public void addOrderBy(String orderBy) {
-        if (this.orderBy == null) {
-            this.orderBy = new StringBuilder(orderBy);
-        } else {
-            this.orderBy.append(",");
-            this.orderBy.append(orderBy);
-        }
+    public void addOrderBy(CharacterOrderBy orderBy) {
+        this.orderBy.add(orderBy);
     }
 
     public void addComics(Integer comics) {
-        if (this.comics == null) {
-            this.comics = new StringBuilder(comics.toString());
-        } else {
-            this.comics.append(",");
-            this.comics.append(comics);
-        }
+        this.comics.add(comics);
     }
 
     public void addSeries(Integer series) {
-        if (this.series == null) {
-            this.series = new StringBuilder(series);
-        } else {
-            this.series.append(",");
-            this.series.append(series);
-        }
+        this.series.add(series);
     }
 
     public void setName(String name) {
