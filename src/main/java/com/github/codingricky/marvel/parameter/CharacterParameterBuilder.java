@@ -4,7 +4,11 @@ import java.util.Date;
 
 public class CharacterParameterBuilder {
 
-    private final CharacterParameters characterParameters = new CharacterParameters();
+    private final CharacterParameters characterParameters;
+
+    public CharacterParameterBuilder() {
+        this.characterParameters = new CharacterParameters();
+    }
 
     public CharacterParameterBuilder withName(String name) {
         characterParameters.setName(name);

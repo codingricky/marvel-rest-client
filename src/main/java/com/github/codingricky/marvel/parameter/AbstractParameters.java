@@ -22,6 +22,8 @@ public abstract class AbstractParameters {
     }
 
     protected UrlBuilder addModifiedSince(Date date, UrlBuilder urlBuilder) {
+        if (date == null) return urlBuilder;
+
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return urlBuilder.addParameter(simpleDateFormat.format(date), "modifiedSince");
     }

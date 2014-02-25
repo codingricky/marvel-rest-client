@@ -36,35 +36,39 @@ public class EventParameters extends AbstractParameters {
         return urlBuilder;
     }
 
-    public void setName(String name) {
+    void setName(String name) {
         this.name = name;
     }
 
-    public void setModifiedSince(Date modifiedSince) {
+    void setModifiedSince(Date modifiedSince) {
         this.modifiedSince = modifiedSince;
     }
 
-    public void setLimit(Integer limit) {
+    void setLimit(Integer limit) {
         this.limit = limit;
     }
 
-    public void setOffset(Integer offset) {
+    void setOffset(Integer offset) {
         this.offset = offset;
     }
 
-    public void addCreators(Integer creator) {
+    void addCreators(Integer creator) {
         this.creators.add(creator);
     }
 
-    public void addSeries(Integer series) {
+    void addSeries(Integer series) {
         this.series.add(series);
     }
 
-    public void addStories(Integer story) {
+    void addStories(Integer story) {
         this.stories.add(story);
     }
 
-    public void addOrderBy(EventsOrderBy orderBy) {
+    void addOrderBy(EventsOrderBy orderBy) {
         this.orderBy.add(orderBy);
+    }
+
+    public Integer getId() {
+        return id;
     }
 }

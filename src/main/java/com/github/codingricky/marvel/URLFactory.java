@@ -2,6 +2,7 @@ package com.github.codingricky.marvel;
 
 import com.github.codingricky.marvel.parameter.CharacterParameters;
 import com.github.codingricky.marvel.parameter.ComicParameters;
+import com.github.codingricky.marvel.parameter.EventParameters;
 import gumi.builders.UrlBuilder;
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -30,15 +31,14 @@ public class URLFactory {
 
     public String getCharactersURL(CharacterParameters characterParameters) {
         UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "characters");
-        long timeStamp = System.currentTimeMillis();
-        urlBuilder = characterParameters.addParameters(urlBuilder).addParameter("ts", String.valueOf(timeStamp))
-                .addParameter("apikey", publicKey)
-                .addParameter("hash", createHash(timeStamp));
+        urlBuilder = characterParameters.addParameters(urlBuilder);
+        urlBuilder = addAuthorisationParameters(urlBuilder);
         return urlBuilder.toString();
     }
 
-    public String getCharactersEventURL(int characterId) {
-        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "characters/" + characterId + "/events");
+    public String getCharactersEventURL(EventParameters eventParameters) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "characters/" + eventParameters.getId() + "/events");
+        urlBuilder = eventParameters.addParameters(urlBuilder);
         urlBuilder = addAuthorisationParameters(urlBuilder);
         return urlBuilder.toString();
     }

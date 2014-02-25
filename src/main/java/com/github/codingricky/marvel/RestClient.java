@@ -15,6 +15,7 @@ import com.github.codingricky.marvel.model.Series;
 import com.github.codingricky.marvel.model.Story;
 import com.github.codingricky.marvel.parameter.CharacterParameters;
 import com.github.codingricky.marvel.parameter.ComicParameters;
+import com.github.codingricky.marvel.parameter.EventParameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import us.monoid.web.Resty;
@@ -39,18 +40,15 @@ public class RestClient {
         this.resty = new Resty();
     }
 
-    public Result<Comic> getCharactersComics(int characterId) throws IOException {
-        final String result = getURL(urlFactory.getCharactersComicsURL(characterId));
-        return convertToResult(Comic.class, result);
-    }
+    // character methods
 
     public Result<Comic> getCharactersComics(ComicParameters comicParameters) throws IOException {
         final String result = getURL(urlFactory.getCharactersComicsURL(comicParameters));
         return convertToResult(Comic.class, result);
     }
 
-    public Result<Event> getCharactersEvents(int characterId) throws IOException {
-        final String result = getURL(urlFactory.getCharactersEventURL(characterId));
+    public Result<Event> getCharactersEvents(EventParameters eventParameters) throws IOException {
+        final String result = getURL(urlFactory.getCharactersEventURL(eventParameters));
         return convertToResult(Event.class, result);
     }
 
@@ -73,6 +71,8 @@ public class RestClient {
         final String result = getURL(urlFactory.getCharacterURL(characterId));
         return convertToResult(MarvelCharacter.class, result);
     }
+
+    // comic methods
 
     public Result<Comic> getComics() throws IOException {
         final String result = getURL(urlFactory.getComicsURL());

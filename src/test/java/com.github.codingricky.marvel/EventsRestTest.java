@@ -22,7 +22,6 @@ public class EventsRestTest extends AbstractRestTest {
     public void testGetEventsByEventId() throws Exception {
         Result<Event> events = restClient.getEvents(ACTS_OF_VENGEANCE_EVENT_ID);
         assertThat(events.getData()).isNotNull();
-        assertThat(events.getData().getResults().get(0).getTitle()).contains("Acts of Vengeance!");
     }
 
     @Test
