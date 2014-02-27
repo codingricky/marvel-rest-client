@@ -54,11 +54,11 @@ public class ComicParameterBuilder {
         comicParameters.addSeries(seriesId);
         return this;
     }
-    public ComicParameterBuilder addEvents(Integer creatorId) {
-        comicParameters.addEvent(creatorId);
+    public ComicParameterBuilder addEvent(Integer eventId) {
+        comicParameters.addEvent(eventId);
         return this;
     }
-    public ComicParameterBuilder addStories(Integer storyId) {
+    public ComicParameterBuilder addStory(Integer storyId) {
         comicParameters.addStory(storyId);
         return this;
     }

@@ -21,11 +21,16 @@ public class EventParameters extends AbstractParameters {
         return addParameterToUrl("orderBy", orderBy, urlBuilder);
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     void setName(String name) {
         this.name = name;
     }
 
-    public Integer getId() {
-        return id;
+
+    void addOrderBy(EventsOrderBy orderBy) {
+        this.orderBy.add(orderBy);
     }
 }

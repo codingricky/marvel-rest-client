@@ -15,23 +15,23 @@ public class EventParametersBuilder {
         return this;
     }
 
-    public EventParametersBuilder setModifiedSince(Date modifiedSince) {
+    public EventParametersBuilder withModifiedSince(Date modifiedSince) {
         eventParameters.setModifiedSince(modifiedSince);
         return this;
     }
 
-    public EventParametersBuilder setLimit(Integer limit) {
+    public EventParametersBuilder withLimit(Integer limit) {
         eventParameters.setLimit(limit);
         return this;
     }
 
-    public EventParametersBuilder setOffset(Integer offset) {
+    public EventParametersBuilder withOffset(Integer offset) {
         eventParameters.setOffset(offset);
         return this;
     }
 
-    public EventParametersBuilder addCreators(Integer creator) {
-        eventParameters.addCreators(creator);
+    public EventParametersBuilder withCreators(Integer creator) {
+        eventParameters.addCreator(creator);
         return this;
     }
 
@@ -41,7 +41,7 @@ public class EventParametersBuilder {
     }
 
     public EventParametersBuilder addStories(Integer story) {
-        eventParameters.addStories(story);
+        eventParameters.addStory(story);
         return this;
     }
 

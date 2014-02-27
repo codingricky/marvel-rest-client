@@ -16,6 +16,8 @@ import com.github.codingricky.marvel.model.Story;
 import com.github.codingricky.marvel.parameter.CharacterParameters;
 import com.github.codingricky.marvel.parameter.ComicParameters;
 import com.github.codingricky.marvel.parameter.EventParameters;
+import com.github.codingricky.marvel.parameter.SeriesParameters;
+import com.github.codingricky.marvel.parameter.StoryParameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import us.monoid.web.Resty;
@@ -52,13 +54,13 @@ public class RestClient {
         return convertToResult(Event.class, result);
     }
 
-    public Result<Story> getCharactersStories(int characterId) throws IOException {
-        final String result = getURL(urlFactory.getCharactersStoriesURL(characterId));
+    public Result<Story> getCharactersStories(StoryParameters storyParameters) throws IOException {
+        final String result = getURL(urlFactory.getCharactersStoriesURL(storyParameters));
         return convertToResult(Story.class, result);
     }
 
-    public Result<Series> getCharactersSeries(int characterId) throws IOException {
-        final String result = getURL(urlFactory.getCharactersSeriesURL(characterId));
+    public Result<Series> getCharactersSeries(SeriesParameters seriesParameters) throws IOException {
+        final String result = getURL(urlFactory.getCharactersSeriesURL(seriesParameters));
         return convertToResult(Series.class, result);
     }
 

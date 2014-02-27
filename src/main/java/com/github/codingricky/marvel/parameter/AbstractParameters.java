@@ -56,7 +56,7 @@ public abstract class AbstractParameters {
         this.modifiedSince = modifiedSince;
     }
 
-    protected void addCreators(Integer creator) {
+    protected void addCreator(Integer creator) {
         this.creators.add(creator);
     }
 
@@ -64,11 +64,23 @@ public abstract class AbstractParameters {
         this.series.add(series);
     }
 
-    protected void addStories(Integer story) {
+    protected void addStory(Integer story) {
         this.stories.add(story);
     }
 
     protected void addComics(Integer comics) {
         this.comics.add(comics);
+    }
+
+    protected void addEvents(Integer events) {
+        this.events.add(events);
+    }
+
+    protected void setLimit(Integer limit) {
+        this.limit = limit;
+    }
+
+    protected void setOffset(Integer offset) {
+        this.offset = offset;
     }
 }
