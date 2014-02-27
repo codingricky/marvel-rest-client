@@ -3,46 +3,18 @@ package com.github.codingricky.marvel.parameter;
 import java.util.Date;
 import java.util.List;
 
-public class SeriesParameters {
+public class SeriesParameters extends AbstractParameters {
     private Integer id;
     private String title;
-    private Date modifiedSince;
-    private List<Integer> comics;
-    private List<Integer> stories;
-    private List<Integer> events;
-    private List<Integer> creators;
     private SeriesType seriesType;
     private List<Format> contains;
     private List<ComicOrderBy> orderBy;
-    private Integer limit;
-    private Integer offset;
 
-    public void setId(Integer id) {
+    public SeriesParameters(Integer id) {
         this.id = id;
     }
-
-    public void setTitle(String title) {
+    void setTitle(String title) {
         this.title = title;
-    }
-
-    public void setModifiedSince(Date modifiedSince) {
-        this.modifiedSince = modifiedSince;
-    }
-
-    public void setComics(List<Integer> comics) {
-        this.comics = comics;
-    }
-
-    public void setStories(List<Integer> stories) {
-        this.stories = stories;
-    }
-
-    public void setEvents(List<Integer> events) {
-        this.events = events;
-    }
-
-    public void setCreators(List<Integer> creators) {
-        this.creators = creators;
     }
 
     public void setSeriesType(SeriesType seriesType) {
