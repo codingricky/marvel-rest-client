@@ -15,6 +15,7 @@ import com.github.codingricky.marvel.model.Series;
 import com.github.codingricky.marvel.model.Story;
 import com.github.codingricky.marvel.parameter.CharacterParameters;
 import com.github.codingricky.marvel.parameter.ComicParameters;
+import com.github.codingricky.marvel.parameter.CreatorParameters;
 import com.github.codingricky.marvel.parameter.EventParameters;
 import com.github.codingricky.marvel.parameter.SeriesParameters;
 import com.github.codingricky.marvel.parameter.StoryParameters;
@@ -76,18 +77,50 @@ public class RestClient {
 
     // comic methods
 
+    /**
+     * Fetches a list of comics.
+     *
+     * @return
+     * @throws IOException
+     */
     public Result<Comic> getComics() throws IOException {
         final String result = getURL(urlFactory.getComicsURL());
         return convertToResult(Comic.class, result);
     }
 
+    /**
+     * Fetches a single comic by id.
+     *
+     * @param comicId
+     * @return
+     * @throws IOException
+     */
     public Result<Comic> getComics(int comicId) throws IOException {
         final String result = getURL(urlFactory.getComicsURL(comicId));
         return convertToResult(Comic.class, result);
     }
 
-    public Result<Event> getComicsEvents(int comicId) throws IOException {
-        final String result = getURL(urlFactory.getComicsEventsURL(comicId));
+    /**
+     * Fetches lists of characters filtered by comic id.
+     *
+     * @param comicParameters
+     * @return
+     * @throws IOException
+     */
+    public Result<MarvelCharacter> getComicsCharacters(ComicParameters comicParameters) throws IOException {
+        final String result = getURL(urlFactory.getComicsCharactersURL(comicParameters));
+        return convertToResult(MarvelCharacter.class, result);
+    }
+
+    /**
+     * Fetches lists of events filtered by a comic id.
+     *
+     * @param eventParameters
+     * @return
+     * @throws IOException
+     */
+    public Result<Event> getComicsEvents(EventParameters eventParameters) throws IOException {
+        final String result = getURL(urlFactory.getComicsEventsURL(eventParameters));
         return convertToResult(Event.class, result);
     }
 
@@ -96,15 +129,19 @@ public class RestClient {
         return convertToResult(Story.class, result);
     }
 
-    public Result<Creator> getComicsCreators(int comicId) throws IOException {
-        final String result = getURL(urlFactory.getComicsCreatorsURL(comicId));
+    /**
+     * Fetches lists of creators filtered by comic id.
+     *
+     * @param creatorParameters
+     * @return
+     * @throws IOException
+     */
+    public Result<Creator> getComicsCreators(CreatorParameters creatorParameters) throws IOException {
+        final String result = getURL(urlFactory.getComicsCreatorsURL(creatorParameters));
         return convertToResult(Creator.class, result);
     }
 
-    public Result<MarvelCharacter> getComicsCharacters(int comicId) throws IOException {
-        final String result = getURL(urlFactory.getComicsCharactersURL(comicId));
-        return convertToResult(MarvelCharacter.class, result);
-    }
+    // event methods
 
     public Result<Event> getEvents() throws IOException {
         final String result = getURL(urlFactory.getEventsURL());
@@ -136,6 +173,8 @@ public class RestClient {
         return convertToResult(Story.class, result);
     }
 
+    // series methods
+
     public Result<Series> getSeries() throws IOException {
         final String result = getURL(urlFactory.getSeriesURL());
         return convertToResult(Series.class, result);
@@ -165,6 +204,8 @@ public class RestClient {
         final String result = getURL(urlFactory.getSeriesStoriesURL(seriesId));
         return convertToResult(Story.class, result);
     }
+
+    // stories methods
 
     public Result<Story> getStories() throws IOException {
         final String result = getURL(urlFactory.getStoriesURL());

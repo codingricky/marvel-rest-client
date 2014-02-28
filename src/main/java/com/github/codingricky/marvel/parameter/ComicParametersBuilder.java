@@ -4,87 +4,89 @@ import java.util.Date;
 
 import org.apache.commons.lang3.Range;
 
-public class ComicParameterBuilder {
+public class ComicParametersBuilder {
     private final ComicParameters comicParameters = new ComicParameters();
 
-    public ComicParameterBuilder(int id) {
+    public ComicParametersBuilder(int id) {
         comicParameters.setId(id);
     }
 
-    public ComicParameterBuilder withFormat(Format format) {
+    public ComicParametersBuilder withFormat(Format format) {
         comicParameters.setFormat(format);
         return this;
     }
 
-    public ComicParameterBuilder withFormatType(FormatType formatType) {
+    public ComicParametersBuilder withFormatType(FormatType formatType) {
         comicParameters.setFormatType(formatType);
         return this;
     }
 
-    public ComicParameterBuilder withNoVariants(Boolean noVariants) {
+    public ComicParametersBuilder withNoVariants(Boolean noVariants) {
         comicParameters.setNoVariants(noVariants);
         return this;
     }
 
-    public ComicParameterBuilder withDateDescriptor(DateDescriptor dateDescriptor) {
+    public ComicParametersBuilder withDateDescriptor(DateDescriptor dateDescriptor) {
         comicParameters.setDateDescriptor(dateDescriptor);
         return this;
     }
 
-    public ComicParameterBuilder withDateRange(Range<Date> dateRange) {
+    public ComicParametersBuilder withDateRange(Range<Date> dateRange) {
         comicParameters.setDateRange(dateRange);
         return this;
     }
 
-    public ComicParameterBuilder withHasDigitalIssue(Boolean hasDigitalIssue) {
+    public ComicParametersBuilder withHasDigitalIssue(Boolean hasDigitalIssue) {
         comicParameters.setHasDigitalIssue(hasDigitalIssue);
         return this;
     }
 
-    public ComicParameterBuilder withModifiedSince(Date modifiedSince) {
+    public ComicParametersBuilder withModifiedSince(Date modifiedSince) {
         comicParameters.setModifiedSince(modifiedSince);
         return this;
     }
 
-    public ComicParameterBuilder addCreator(Integer creatorId) {
+    public ComicParametersBuilder addCreator(Integer creatorId) {
         comicParameters.addCreator(creatorId);
         return this;
     }
-    public ComicParameterBuilder addSeries(Integer seriesId) {
+
+    public ComicParametersBuilder addSeries(Integer seriesId) {
         comicParameters.addSeries(seriesId);
         return this;
     }
-    public ComicParameterBuilder addEvent(Integer eventId) {
+
+    public ComicParametersBuilder addEvent(Integer eventId) {
         comicParameters.addEvent(eventId);
         return this;
     }
-    public ComicParameterBuilder addStory(Integer storyId) {
+    public ComicParametersBuilder addStory(Integer storyId) {
         comicParameters.addStory(storyId);
         return this;
     }
 
     // TODO better name required!
-    public ComicParameterBuilder addSharedAppearances(Integer characterId) {
+    public ComicParametersBuilder addSharedAppearances(Integer characterId) {
         comicParameters.addSharedAppearances(characterId);
         return this;
     }
 
-    public ComicParameterBuilder addCollaborators(Integer creatorId) {
+    public ComicParametersBuilder addCollaborators(Integer creatorId) {
         comicParameters.addCollaborators(creatorId);
         return this;
     }
 
-    public ComicParameterBuilder addOrderBy(ComicOrderBy orderBy) {
+    public ComicParametersBuilder addOrderBy(ComicOrderBy orderBy) {
         comicParameters.addOrderBy(orderBy);
         return this;
     }
 
-    public ComicParameterBuilder withLimit(Integer limit) {
+    public ComicParametersBuilder withLimit(Integer limit) {
         comicParameters.setLimit(limit);
         return this;
     }
 
-    public ComicParameterBuilder withOffset(Integer offset) {
+    public ComicParametersBuilder withOffset(Integer offset) {
         comicParameters.setOffset(offset);
         return this;
     }

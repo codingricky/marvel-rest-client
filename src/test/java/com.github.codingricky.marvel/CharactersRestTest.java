@@ -11,7 +11,7 @@ import com.github.codingricky.marvel.model.Story;
 import com.github.codingricky.marvel.parameter.CharacterOrderBy;
 import com.github.codingricky.marvel.parameter.CharacterParameterBuilder;
 import com.github.codingricky.marvel.parameter.ComicOrderBy;
-import com.github.codingricky.marvel.parameter.ComicParameterBuilder;
+import com.github.codingricky.marvel.parameter.ComicParametersBuilder;
 import com.github.codingricky.marvel.parameter.EventParametersBuilder;
 import com.github.codingricky.marvel.parameter.SeriesParametersBuilder;
 import com.github.codingricky.marvel.parameter.StoryParametersBuilder;
@@ -41,13 +41,13 @@ public class CharactersRestTest extends AbstractRestTest {
 
     @Test
     public void testGetCharactersComics() throws IOException {
-        Result<Comic> comics = restClient.getCharactersComics(new ComicParameterBuilder(BLACK_WIDOW_ID).create());
+        Result<Comic> comics = restClient.getCharactersComics(new ComicParametersBuilder(BLACK_WIDOW_ID).create());
         assertThat(comics.getData()).isNotNull();
     }
 
     @Test
     public void testGetCharactersComicsWithParameters() throws IOException {
-        Result<Comic> comics = restClient.getCharactersComics(new ComicParameterBuilder(BLACK_WIDOW_ID)
+        Result<Comic> comics = restClient.getCharactersComics(new ComicParametersBuilder(BLACK_WIDOW_ID)
                 .withLimit(3)
                 .addOrderBy(ComicOrderBy.FOC_DATE_ASC)
                 .addOrderBy(ComicOrderBy.ISSUE_NUMBER_DESC).create());

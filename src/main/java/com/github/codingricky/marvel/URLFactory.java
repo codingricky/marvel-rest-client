@@ -1,7 +1,9 @@
 package com.github.codingricky.marvel;
 
+import com.github.codingricky.marvel.parameter.AbstractParameters;
 import com.github.codingricky.marvel.parameter.CharacterParameters;
 import com.github.codingricky.marvel.parameter.ComicParameters;
+import com.github.codingricky.marvel.parameter.CreatorParameters;
 import com.github.codingricky.marvel.parameter.EventParameters;
 import com.github.codingricky.marvel.parameter.SeriesParameters;
 import com.github.codingricky.marvel.parameter.StoryParameters;
@@ -21,10 +23,8 @@ public class URLFactory {
     }
 
     public String getCharactersURL(CharacterParameters characterParameters) {
-        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "characters");
-        urlBuilder = characterParameters.addParameters(urlBuilder);
-        urlBuilder = addAuthorisationParameters(urlBuilder);
-        return urlBuilder.toString();
+        final String url = BASE_URL + "characters";
+        return buildURL(url, characterParameters);
     }
 
     public String getCharacterURL(int characterId) {
@@ -33,31 +33,23 @@ public class URLFactory {
     }
 
     public String getCharactersComicsURL(ComicParameters comicParameters) {
-        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "characters/" + comicParameters.getId() + "/comics");
-        urlBuilder = comicParameters.addParameters(urlBuilder);
-        urlBuilder = addAuthorisationParameters(urlBuilder);
-        return urlBuilder.toString();
+        final String url = BASE_URL + "characters/" + comicParameters.getId() + "/comics";
+        return buildURL(url, comicParameters);
     }
 
     public String getCharactersEventURL(EventParameters eventParameters) {
-        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "characters/" + eventParameters.getId() + "/events");
-        urlBuilder = eventParameters.addParameters(urlBuilder);
-        urlBuilder = addAuthorisationParameters(urlBuilder);
-        return urlBuilder.toString();
+        final String url = BASE_URL + "characters/" + eventParameters.getId() + "/events";
+        return buildURL(url, eventParameters);
     }
 
     public String getCharactersStoriesURL(StoryParameters storyParameters) {
-        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "characters/" + storyParameters.getId() + "/stories");
-        urlBuilder = storyParameters.addParameters(urlBuilder);
-        urlBuilder = addAuthorisationParameters(urlBuilder);
-        return urlBuilder.toString();
+        final String url = BASE_URL + "characters/" + storyParameters.getId() + "/stories";
+        return buildURL(url, storyParameters);
     }
 
     public String getCharactersSeriesURL(SeriesParameters seriesParameters) {
-        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "characters/" + seriesParameters.getId() + "/series");
-        urlBuilder = seriesParameters.addParameters(urlBuilder);
-        urlBuilder = addAuthorisationParameters(urlBuilder);
-        return urlBuilder.toString();
+        final String url = BASE_URL + "characters/" + seriesParameters.getId() + "/series";
+        return buildURL(url, seriesParameters);
     }
 
     public String getComicsURL() {
@@ -66,22 +58,18 @@ public class URLFactory {
         return urlBuilder.toString();
     }
 
-    public String getComicsCharactersURL(int comicId) {
-        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "comics/" + comicId + "/characters");
-        urlBuilder = addAuthorisationParameters(urlBuilder);
-        return urlBuilder.toString();
+    public String getComicsCharactersURL(ComicParameters comicParameters) {
+        return buildURL(BASE_URL + "comics/" + comicParameters.getId() + "/characters", comicParameters);
     }
 
-    public String getComicsCreatorsURL(int comicId) {
-        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "comics/" + comicId + "/creators");
-        urlBuilder = addAuthorisationParameters(urlBuilder);
-        return urlBuilder.toString();
+    public String getComicsCreatorsURL(CreatorParameters creatorParameters) {
+        final String url = BASE_URL + "comics/" + creatorParameters.getId() + "/creators";
+        return buildURL(url, creatorParameters);
     }
 
-    public String getComicsEventsURL(int comicId) {
-        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "comics/" + comicId + "/events");
-        urlBuilder = addAuthorisationParameters(urlBuilder);
-        return urlBuilder.toString();
+    public String getComicsEventsURL(EventParameters eventParameters) {
+        final String url = BASE_URL + "comics/" + eventParameters.getId() + "/events";
+        return buildURL(url, eventParameters);
     }
 
     public String getComicsStoriesURL(int comicId) {
@@ -194,6 +182,13 @@ public class URLFactory {
 
     public String getStoriesCreatorsURL(int storyId) {
         UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "stories/" + storyId + "/creators");
+        urlBuilder = addAuthorisationParameters(urlBuilder);
+        return urlBuilder.toString();
+    }
+
+    private <T extends AbstractParameters> String buildURL(String url, T parameters) {
+        UrlBuilder urlBuilder = UrlBuilder.fromString(url);
+        urlBuilder = parameters.addParameters(urlBuilder);
         urlBuilder = addAuthorisationParameters(urlBuilder);
         return urlBuilder.toString();
     }

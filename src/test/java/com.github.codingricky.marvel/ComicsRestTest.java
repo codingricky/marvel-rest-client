@@ -6,6 +6,8 @@ import com.github.codingricky.marvel.model.Event;
 import com.github.codingricky.marvel.model.MarvelCharacter;
 import com.github.codingricky.marvel.model.Result;
 import com.github.codingricky.marvel.model.Story;
+import com.github.codingricky.marvel.parameter.ComicParametersBuilder;
+import com.github.codingricky.marvel.parameter.CreatorParametersBuilder;
 import org.junit.Test;
 
 import static org.fest.assertions.Assertions.assertThat;
@@ -32,13 +34,13 @@ public class ComicsRestTest extends AbstractRestTest {
 
     @Test
     public void testGetComicsCharacters() throws Exception {
-        Result<MarvelCharacter> characters = restClient.getComicsCharacters(AMAZING_SPIDER_MAN_COMIC_ID);
+        Result<MarvelCharacter> characters = restClient.getComicsCharacters(new ComicParametersBuilder(AMAZING_SPIDER_MAN_COMIC_ID).create());
         assertThat(characters.getData()).isNotNull();
     }
 
     @Test
     public void testGetComicsCreators() throws Exception {
-        Result<Creator> creators = restClient.getComicsCreators(AMAZING_SPIDER_MAN_COMIC_ID);
+        Result<Creator> creators = restClient.getComicsCreators(new CreatorParametersBuilder(AMAZING_SPIDER_MAN_COMIC_ID).create());
         assertThat(creators.getData()).isNotNull();
     }
 
