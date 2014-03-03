@@ -124,8 +124,15 @@ public class RestClient {
         return convertToResult(Event.class, result);
     }
 
-    public Result<Story> getComicsStories(int comicId) throws IOException {
-        final String result = getURL(urlFactory.getComicsStoriesURL(comicId));
+    /**
+     * Fetches lists of stories filtered by a comic id.
+     *
+     * @param storyParameters
+     * @return
+     * @throws IOException
+     */
+    public Result<Story> getComicsStories(StoryParameters storyParameters) throws IOException {
+        final String result = getURL(urlFactory.getComicsStoriesURL(storyParameters));
         return convertToResult(Story.class, result);
     }
 
