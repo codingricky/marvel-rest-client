@@ -21,6 +21,12 @@ public class URLFactory {
     private static final String COMICS_BY_ID_URL = BASE_URL + "comics/%d";
     private static final String COMICS_URL = BASE_URL + "comics";
 
+    private static final String CHARACTERS_URL = BASE_URL + "characters/%d";
+    private static final String CHARACTERS_COMICS_URL =  BASE_URL + "characters/%d/comics";
+    private static final String CHARACTERS_EVENT_URL = BASE_URL + "characters/%d/events";
+    private static final String CHARACTERS_STORIES_URL = BASE_URL + "characters/%d/stories";
+    private static final String CHARACTERS_SERIES_URL = BASE_URL + "characters/%d/series";
+
     private final String publicKey;
     private final String privateKey;
 
@@ -35,27 +41,27 @@ public class URLFactory {
     }
 
     public String getCharacterURL(int characterId) {
-        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "characters/" + characterId);
+        UrlBuilder urlBuilder = UrlBuilder.fromString(String.format(CHARACTERS_URL, characterId));
         return addAuthorisationParameters(urlBuilder).toString();
     }
 
     public String getCharactersComicsURL(ComicParameters comicParameters) {
-        final String url = BASE_URL + "characters/" + comicParameters.getId() + "/comics";
+        final String url = String.format(CHARACTERS_COMICS_URL, comicParameters.getId());
         return buildURL(url, comicParameters);
     }
 
     public String getCharactersEventURL(EventParameters eventParameters) {
-        final String url = BASE_URL + "characters/" + eventParameters.getId() + "/events";
+        final String url = String.format(CHARACTERS_EVENT_URL, eventParameters.getId());
         return buildURL(url, eventParameters);
     }
 
     public String getCharactersStoriesURL(StoryParameters storyParameters) {
-        final String url = BASE_URL + "characters/" + storyParameters.getId() + "/stories";
+        final String url = String.format(CHARACTERS_STORIES_URL, storyParameters.getId());
         return buildURL(url, storyParameters);
     }
 
     public String getCharactersSeriesURL(SeriesParameters seriesParameters) {
-        final String url = BASE_URL + "characters/" + seriesParameters.getId() + "/series";
+        final String url = String.format(CHARACTERS_SERIES_URL, seriesParameters.getId());
         return buildURL(url, seriesParameters);
     }
 
