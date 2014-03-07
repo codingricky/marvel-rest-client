@@ -27,6 +27,14 @@ public class URLFactory {
     private static final String CHARACTERS_STORIES_URL = BASE_URL + "characters/%d/stories";
     private static final String CHARACTERS_SERIES_URL = BASE_URL + "characters/%d/series";
 
+    private static final String EVENTS_URL = BASE_URL + "events";
+    private static final String EVENTS_BY_ID_URL = BASE_URL + "events/%d";
+    private static final String EVENTS_CHARACTERS_URL = BASE_URL + "events/%d/characters";
+    private static final String EVENTS_COMICS_URL = BASE_URL + "events/%d/comics";
+    private static final String EVENTS_STORIES_URL = BASE_URL + "events/%d/stories";
+    private static final String EVENTS_CREATORS_URL = BASE_URL + "events/%d/creators";
+
+
     private final String publicKey;
     private final String privateKey;
 
@@ -99,39 +107,36 @@ public class URLFactory {
     }
 
     public String getEventsURL() {
-        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "events");
+        UrlBuilder urlBuilder = UrlBuilder.fromString(EVENTS_URL);
         urlBuilder = addAuthorisationParameters(urlBuilder);
         return urlBuilder.toString();
     }
 
     public String getEventsURL(int eventId) {
-        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "events/" + eventId);
+        final String url = String.format(EVENTS_BY_ID_URL, eventId);
+        UrlBuilder urlBuilder = UrlBuilder.fromString(url);
         urlBuilder = addAuthorisationParameters(urlBuilder);
         return urlBuilder.toString();
     }
 
-    public String getEventsCharactersURL(int eventId) {
-        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "events/" + eventId + "/characters");
-        urlBuilder = addAuthorisationParameters(urlBuilder);
-        return urlBuilder.toString();
+    public String getEventsCharactersURL(EventParameters eventParameters) {
+        final String url = String.format(EVENTS_CHARACTERS_URL, eventParameters.getId());
+        return buildURL(url, eventParameters);
     }
 
-    public String getEventsStoriesURL(int eventId) {
-        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "events/" + eventId + "/stories");
-        urlBuilder = addAuthorisationParameters(urlBuilder);
-        return urlBuilder.toString();
+    public String getEventsStoriesURL(EventParameters eventParameters) {
+        final String url = String.format(EVENTS_STORIES_URL, eventParameters.getId());
+        return buildURL(url, eventParameters);
     }
 
-    public String getEventsCreatorsURL(int eventId) {
-        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "events/" + eventId + "/creators");
-        urlBuilder = addAuthorisationParameters(urlBuilder);
-        return urlBuilder.toString();
+    public String getEventsCreatorsURL(EventParameters eventParameters) {
+        final String url = String.format(EVENTS_CREATORS_URL, eventParameters.getId());
+        return buildURL(url, eventParameters);
     }
 
-    public String getEventsComicsURL(int eventId) {
-        UrlBuilder urlBuilder = UrlBuilder.fromString(BASE_URL + "events/" + eventId + "/comics");
-        urlBuilder = addAuthorisationParameters(urlBuilder);
-        return urlBuilder.toString();
+    public String getEventsComicsURL(EventParameters eventParameters) {
+        final String url = String.format(EVENTS_COMICS_URL, eventParameters.getId());
+        return buildURL(url, eventParameters);
     }
 
     public String getSeriesURL() {

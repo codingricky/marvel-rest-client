@@ -6,6 +6,9 @@ public class Result<T> {
     private int code;
     private String status;
     private String etag;
+    private String copyright;
+    private String attributionText;
+    private String attributionHTML;
     private Container<T> data;
 
     public int getCode() {
@@ -38,6 +41,30 @@ public class Result<T> {
 
     public void setEtag(String etag) {
         this.etag = etag;
+    }
+
+    public String getCopyright() {
+        return copyright;
+    }
+
+    public void setCopyright(String copyright) {
+        this.copyright = copyright;
+    }
+
+    public String getAttributionText() {
+        return attributionText;
+    }
+
+    public void setAttributionText(String attributionText) {
+        this.attributionText = attributionText;
+    }
+
+    public String getAttributionHTML() {
+        return attributionHTML;
+    }
+
+    public void setAttributionHTML(String attributionHTML) {
+        this.attributionHTML = attributionHTML;
     }
 
     @Override

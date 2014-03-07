@@ -148,35 +148,73 @@ public class RestClient {
         return convertToResult(Creator.class, result);
     }
 
-    // event methods
-
+    /**
+     * Fetches list of events.
+     *
+     * @return
+     * @throws IOException
+     */
     public Result<Event> getEvents() throws IOException {
         final String result = getURL(urlFactory.getEventsURL());
         return convertToResult(Event.class, result);
     }
 
+    /**
+     * Fetches a single event by id.
+     *
+     * @param eventId
+     * @return
+     * @throws IOException
+     */
     public Result<Event> getEvents(int eventId) throws IOException {
         final String result = getURL(urlFactory.getEventsURL(eventId));
         return convertToResult(Event.class, result);
     }
 
-    public Result<MarvelCharacter> getEventsCharacters(int eventId) throws IOException {
-        final String result = getURL(urlFactory.getEventsCharactersURL(eventId));
+    /**
+     * Fetches lists of characters filtered by an event id.
+     *
+     * @param eventParameters
+     * @return
+     * @throws IOException
+     */
+    public Result<MarvelCharacter> getEventsCharacters(EventParameters eventParameters) throws IOException {
+        final String result = getURL(urlFactory.getEventsCharactersURL(eventParameters));
         return convertToResult(MarvelCharacter.class, result);
     }
 
-    public Result<Comic> getEventsComics(int eventId) throws IOException {
-        final String result = getURL(urlFactory.getEventsComicsURL(eventId));
+    /**
+     * Fetches lists of comics filtered by an event id.
+     *
+     * @param eventParameters
+     * @return
+     * @throws IOException
+     */
+    public Result<Comic> getEventsComics(EventParameters eventParameters) throws IOException {
+        final String result = getURL(urlFactory.getEventsComicsURL(eventParameters));
         return convertToResult(Comic.class, result);
     }
 
-    public Result<Creator> getEventsCreators(int eventId) throws IOException {
-        final String result = getURL(urlFactory.getEventsCreatorsURL(eventId));
+    /**
+     * Fetches lists of creators filtered by an event id.
+     *
+     * @param eventParameters
+     * @return
+     * @throws IOException
+     */
+    public Result<Creator> getEventsCreators(EventParameters eventParameters) throws IOException {
+        final String result = getURL(urlFactory.getEventsCreatorsURL(eventParameters));
         return convertToResult(Creator.class, result);
     }
 
-    public Result<Story> getEventsStories(int eventId) throws IOException {
-        final String result = getURL(urlFactory.getEventsStoriesURL(eventId));
+    /**
+     * Fetches lists of stories filtered by an event id.
+     * @param eventParameters
+     * @return
+     * @throws IOException
+     */
+    public Result<Story> getEventsStories(EventParameters eventParameters) throws IOException {
+        final String result = getURL(urlFactory.getEventsStoriesURL(eventParameters));
         return convertToResult(Story.class, result);
     }
 
