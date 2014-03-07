@@ -28,6 +28,12 @@ public class CharactersRestTest extends AbstractRestTest {
     }
 
     @Test
+    public void testGetCharactersById() throws IOException {
+        Result<MarvelCharacter> characters = restClient.getCharacters(new CharacterParameterBuilder().withLimit(5).create());
+        assertThat(characters.getData()).isNotNull();
+    }
+
+    @Test
     public void testGetCharacters() throws IOException {
         Result<MarvelCharacter> characters = restClient.getCharacters(new CharacterParameterBuilder().withLimit(5).create());
         assertThat(characters.getData()).isNotNull();

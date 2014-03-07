@@ -43,39 +43,78 @@ public class RestClient {
         this.resty = new Resty();
     }
 
-    // character methods
 
-    public Result<Comic> getCharactersComics(ComicParameters comicParameters) throws IOException {
-        final String result = getURL(urlFactory.getCharactersComicsURL(comicParameters));
-        return convertToResult(Comic.class, result);
-    }
-
-    public Result<Event> getCharactersEvents(EventParameters eventParameters) throws IOException {
-        final String result = getURL(urlFactory.getCharactersEventURL(eventParameters));
-        return convertToResult(Event.class, result);
-    }
-
-    public Result<Story> getCharactersStories(StoryParameters storyParameters) throws IOException {
-        final String result = getURL(urlFactory.getCharactersStoriesURL(storyParameters));
-        return convertToResult(Story.class, result);
-    }
-
-    public Result<Series> getCharactersSeries(SeriesParameters seriesParameters) throws IOException {
-        final String result = getURL(urlFactory.getCharactersSeriesURL(seriesParameters));
-        return convertToResult(Series.class, result);
-    }
-
+    /**
+     * Fetches lists of characters.
+     *
+     * @param characterParameters
+     * @return
+     * @throws IOException
+     */
     public Result<MarvelCharacter> getCharacters(CharacterParameters characterParameters) throws IOException {
         final String result = getURL(urlFactory.getCharactersURL(characterParameters));
         return convertToResult(MarvelCharacter.class, result);
     }
 
+    /**
+     * Fetches lists of characters filtered by character id.
+     *
+     * @param characterId
+     * @return
+     * @throws IOException
+     */
     public Result<MarvelCharacter> getCharacter(int characterId) throws IOException {
         final String result = getURL(urlFactory.getCharacterURL(characterId));
         return convertToResult(MarvelCharacter.class, result);
     }
 
-    // comic methods
+    /**
+     * Fetches lists of comics filtered by character id.
+     *
+     * @param comicParameters
+     * @return
+     * @throws IOException
+     */
+    public Result<Comic> getCharactersComics(ComicParameters comicParameters) throws IOException {
+        final String result = getURL(urlFactory.getCharactersComicsURL(comicParameters));
+        return convertToResult(Comic.class, result);
+    }
+
+    /**
+     * Fetches lists of events filtered by character id.
+     *
+     * @param eventParameters
+     * @return
+     * @throws IOException
+     */
+    public Result<Event> getCharactersEvents(EventParameters eventParameters) throws IOException {
+        final String result = getURL(urlFactory.getCharactersEventURL(eventParameters));
+        return convertToResult(Event.class, result);
+    }
+
+    /**
+     * Fetches lists of stories filtered by character id.
+     *
+     * @param storyParameters
+     * @return
+     * @throws IOException
+     */
+    public Result<Story> getCharactersStories(StoryParameters storyParameters) throws IOException {
+        final String result = getURL(urlFactory.getCharactersStoriesURL(storyParameters));
+        return convertToResult(Story.class, result);
+    }
+
+    /**
+     * Fetches lists of series filtered by character id.
+     *
+     * @param seriesParameters
+     * @return
+     * @throws IOException
+     */
+    public Result<Series> getCharactersSeries(SeriesParameters seriesParameters) throws IOException {
+        final String result = getURL(urlFactory.getCharactersSeriesURL(seriesParameters));
+        return convertToResult(Series.class, result);
+    }
 
     /**
      * Fetches a list of comics.
@@ -218,62 +257,134 @@ public class RestClient {
         return convertToResult(Story.class, result);
     }
 
-    // series methods
-
+    /**
+     * Fetches lists of series.
+     *
+     * @return
+     * @throws IOException
+     */
     public Result<Series> getSeries() throws IOException {
         final String result = getURL(urlFactory.getSeriesURL());
         return convertToResult(Series.class, result);
     }
 
+    /**
+     * Fetches a single comic series by id.
+     *
+     * @param seriesId
+     * @return
+     * @throws IOException
+     */
     public Result<Series> getSeries(int seriesId) throws IOException {
         final String result = getURL(urlFactory.getSeriesURL(seriesId));
         return convertToResult(Series.class, result);
     }
 
-    public Result<MarvelCharacter> getSeriesCharacters(int seriesId) throws IOException {
-        final String result = getURL(urlFactory.getSeriesCharactersURL(seriesId));
+    /**
+     * Fetches lists of characters by a series id.
+     *
+     * @param seriesParameters
+     * @return
+     * @throws IOException
+     */
+    public Result<MarvelCharacter> getSeriesCharacters(SeriesParameters seriesParameters) throws IOException {
+        final String result = getURL(urlFactory.getSeriesCharactersURL(seriesParameters));
         return convertToResult(MarvelCharacter.class, result);
     }
 
-    public Result<Comic> getSeriesComics(int seriesId) throws IOException {
-        final String result = getURL(urlFactory.getSeriesComicsURL(seriesId));
+    /**
+     * Fetches lists of comics by a series id.
+     *
+     * @param seriesParameters
+     * @return
+     * @throws IOException
+     */
+    public Result<Comic> getSeriesComics(SeriesParameters seriesParameters) throws IOException {
+        final String result = getURL(urlFactory.getSeriesComicsURL(seriesParameters));
         return convertToResult(Comic.class, result);
     }
 
-    public Result<Creator> getSeriesCreators(int seriesId) throws IOException {
-        final String result = getURL(urlFactory.getSeriesCreatorsURL(seriesId));
+    /**
+     * Fetches lists of creators by a series id.
+     *
+     * @param seriesParameters
+     * @return
+     * @throws IOException
+     */
+    public Result<Creator> getSeriesCreators(SeriesParameters seriesParameters) throws IOException {
+        final String result = getURL(urlFactory.getSeriesCreatorsURL(seriesParameters));
         return convertToResult(Creator.class, result);
     }
 
-    public Result<Story> getSeriesStories(int seriesId) throws IOException {
-        final String result = getURL(urlFactory.getSeriesStoriesURL(seriesId));
+    /**
+     * Fetches lists of stories by a series id.
+     *
+     * @param seriesParameters
+     * @return
+     * @throws IOException
+     */
+    public Result<Story> getSeriesStories(SeriesParameters seriesParameters) throws IOException {
+        final String result = getURL(urlFactory.getSeriesStoriesURL(seriesParameters));
         return convertToResult(Story.class, result);
     }
 
-    // stories methods
 
+    /**
+     * Fetches lists of stories.
+     *
+     * @return
+     * @throws IOException
+     */
     public Result<Story> getStories() throws IOException {
         final String result = getURL(urlFactory.getStoriesURL());
         return convertToResult(Story.class, result);
     }
 
+    /**
+     * Fetches lists of stories filtered by story id.
+     *
+     * @param storyId
+     * @return
+     * @throws IOException
+     */
     public Result<Story> getStories(int storyId) throws IOException {
         final String result = getURL(urlFactory.getStoriesURL(storyId));
         return convertToResult(Story.class, result);
     }
 
-    public Result<MarvelCharacter> getStoriesCharacters(int storyid) throws IOException {
-        final String result = getURL(urlFactory.getStoriesCharactersURL(storyid));
+    /**
+     * Fetches lists of characters filtered by story id.
+     *
+     * @param storyParameters
+     * @return
+     * @throws IOException
+     */
+    public Result<MarvelCharacter> getStoriesCharacters(StoryParameters storyParameters) throws IOException {
+        final String result = getURL(urlFactory.getStoriesCharactersURL(storyParameters));
         return convertToResult(MarvelCharacter.class, result);
     }
 
-    public Result<Comic> getStoriesComics(int storyId) throws IOException {
-        final String result = getURL(urlFactory.getStoriesComicsURL(storyId));
+    /**
+     * Fetches lists of comics filtered by story id.
+     *
+     * @param storyParameters
+     * @return
+     * @throws IOException
+     */
+    public Result<Comic> getStoriesComics(StoryParameters storyParameters) throws IOException {
+        final String result = getURL(urlFactory.getStoriesComicsURL(storyParameters));
         return convertToResult(Comic.class, result);
     }
 
-    public Result<Creator> getStoriesCreators(int storyId) throws IOException {
-        final String result = getURL(urlFactory.getStoriesCreatorsURL(storyId));
+    /**
+     * Fetches lists of creators filtered by story id.
+     *
+     * @param storyParameters
+     * @return
+     * @throws IOException
+     */
+    public Result<Creator> getStoriesCreators(StoryParameters storyParameters) throws IOException {
+        final String result = getURL(urlFactory.getStoriesCreatorsURL(storyParameters));
         return convertToResult(Creator.class, result);
     }
 
