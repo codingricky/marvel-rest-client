@@ -19,9 +19,9 @@ import com.github.codingricky.marvel.parameter.CreatorParameters;
 import com.github.codingricky.marvel.parameter.EventParameters;
 import com.github.codingricky.marvel.parameter.SeriesParameters;
 import com.github.codingricky.marvel.parameter.StoryParameters;
+import org.apache.http.client.fluent.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import us.monoid.web.Resty;
 
 import java.io.IOException;
 
@@ -31,7 +31,6 @@ public class RestClient {
 
     private final URLFactory urlFactory;
     private final ObjectMapper objectMapper;
-    private final Resty resty;
 
     public RestClient(String privateKey, String publicKey) {
         this.urlFactory = new URLFactory(privateKey, publicKey);
@@ -40,7 +39,6 @@ public class RestClient {
                 new Version(1, 0, 0, null, null, null));
         module.addDeserializer(CollectionURI.class, new CollectionURIDeserializer());
         objectMapper.registerModule(module);
-        this.resty = new Resty();
     }
 
 
@@ -395,6 +393,6 @@ public class RestClient {
 
     private String getURL(String url) throws IOException {
         logger.info("getting " + url);
-        return resty.text(url).toString();
+        return Request.Get(url).execute().returnContent().asString();
     }
 }

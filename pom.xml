@@ -31,9 +31,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>us.monoid.web</groupId>
-            <artifactId>resty</artifactId>
-            <version>0.3.2</version>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>fluent-hc</artifactId>
+            <version>4.3.3</version>
         </dependency>
         <dependency>
             <groupId>commons-codec</groupId>

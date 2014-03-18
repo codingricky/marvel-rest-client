@@ -35,8 +35,7 @@ Result<Comic> comics = restClient.getCharactersComics(new ComicParametersBuilder
 
 TODO
 ====
-* Write more of the readme
-* Put it into maven repo
 * Add error handling
 * Add support for all the API
-* Add ability to save images
+* Proxy Support
+* Add instructions on how to build the library
