@@ -27,10 +27,9 @@ public class CharactersRestTest extends AbstractRestTest {
         assertThat(character.getData()).isNotNull();
     }
 
-    @Test
+    @Test(expected = MarvelRestException.class)
     public void testGetCharacterThatDoesntExist() throws IOException {
-//        Result<MarvelCharacter> character = restClient.getCharacter(1);
-
+        restClient.getCharacter(1);
     }
 
     @Test

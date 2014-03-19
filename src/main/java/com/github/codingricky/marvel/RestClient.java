@@ -19,7 +19,11 @@ import com.github.codingricky.marvel.parameter.CreatorParameters;
 import com.github.codingricky.marvel.parameter.EventParameters;
 import com.github.codingricky.marvel.parameter.SeriesParameters;
 import com.github.codingricky.marvel.parameter.StoryParameters;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.fluent.Content;
 import org.apache.http.client.fluent.Request;
+import org.apache.http.client.fluent.Response;
+import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -392,7 +396,10 @@ public class RestClient {
     }
 
     private String getURL(String url) throws IOException {
-        logger.info("getting " + url);
-        return Request.Get(url).execute().returnContent().asString();
+        final HttpResponse httpResponse = Request.Get(url).execute().returnResponse();
+        if (httpResponse.getStatusLine().getStatusCode() != 200) {
+            throw new MarvelRestException(httpResponse);
+        }
+        return EntityUtils.toString(httpResponse.getEntity());
     }
 }
