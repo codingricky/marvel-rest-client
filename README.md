@@ -8,13 +8,13 @@ to get a public/private key combination.
 
 Usage
 =====
-In your pom.xml file add the following dependency.
+In your pom.xml file add the following dependency. Use the latest version available.
 
 ```xml
 <dependency>
     <groupId>com.github.codingricky</groupId>
     <artifactId>marvel-rest-client</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.1</version>
 </dependency>
 ```
 
@@ -31,6 +31,11 @@ To get a list of comics that a character has been in
 RestClient restClient = new RestClient(privateKey, publicKey);
 Result<Comic> comics = restClient.getCharactersComics(new ComicParametersBuilder(BLACK_WIDOW_ID).create());
 ```
+
+License
+=======
+
+!INCLUDE LICENSE.txt
 
 
 TODO
