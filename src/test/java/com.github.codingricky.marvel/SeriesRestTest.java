@@ -6,7 +6,6 @@ import com.github.codingricky.marvel.model.MarvelCharacter;
 import com.github.codingricky.marvel.model.Result;
 import com.github.codingricky.marvel.model.Series;
 import com.github.codingricky.marvel.model.Story;
-import com.github.codingricky.marvel.parameter.SeriesParameters;
 import com.github.codingricky.marvel.parameter.SeriesParametersBuilder;
 import org.junit.Test;
 

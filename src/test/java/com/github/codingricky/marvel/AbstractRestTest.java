@@ -1,5 +1,6 @@
 package com.github.codingricky.marvel;
 
+import com.github.codingricky.marvel.RestClient;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 

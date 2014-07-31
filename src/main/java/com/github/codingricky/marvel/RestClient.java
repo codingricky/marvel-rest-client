@@ -19,6 +19,7 @@ import com.github.codingricky.marvel.parameter.CreatorParameters;
 import com.github.codingricky.marvel.parameter.EventParameters;
 import com.github.codingricky.marvel.parameter.SeriesParameters;
 import com.github.codingricky.marvel.parameter.StoryParameters;
+import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.fluent.Content;
 import org.apache.http.client.fluent.Request;
@@ -31,10 +32,9 @@ import java.io.IOException;
 
 public class RestClient {
 
-    private static final Logger logger = LoggerFactory.getLogger(RestClient.class);
-
     private final URLFactory urlFactory;
     private final ObjectMapper objectMapper;
+    private Proxy proxy;
 
     public RestClient(String privateKey, String publicKey) {
         this.urlFactory = new URLFactory(privateKey, publicKey);
@@ -46,13 +46,17 @@ public class RestClient {
     }
 
 
-    /**
-     * Fetches lists of characters.
-     *
-     * @param characterParameters
-     * @return
-     * @throws IOException
-     */
+    public RestClient(String privateKey, String publicKey, Proxy proxy) {
+        this(privateKey, publicKey);
+        this.proxy = proxy;
+    }
+        /**
+         * Fetches lists of characters.
+         *
+         * @param characterParameters
+         * @return
+         * @throws IOException
+         */
     public Result<MarvelCharacter> getCharacters(CharacterParameters characterParameters) throws IOException {
         final String result = getURL(urlFactory.getCharactersURL(characterParameters));
         return convertToResult(MarvelCharacter.class, result);
@@ -392,14 +396,24 @@ public class RestClient {
 
     private <T> Result<T> convertToResult(Class clazz, String result) throws IOException {
         JavaType javaType = objectMapper.getTypeFactory().constructParametricType(Result.class, clazz);
-        return objectMapper.readValue(result, javaType);
+        final Result<T> mappedResult = objectMapper.readValue(result, javaType);
+        mappedResult.setRawResponse(result);
+        return mappedResult;
     }
 
     private String getURL(String url) throws IOException {
-        final HttpResponse httpResponse = Request.Get(url).execute().returnResponse();
+        final HttpResponse httpResponse = getResponse(url);
         if (httpResponse.getStatusLine().getStatusCode() != 200) {
             throw new MarvelRestException(httpResponse);
         }
         return EntityUtils.toString(httpResponse.getEntity());
+    }
+
+    private HttpResponse getResponse(String url) throws IOException {
+        if (proxy == null) {
+            return Request.Get(url).execute().returnResponse();
+        } else {
+            return Request.Get(url).viaProxy(new HttpHost(proxy.getHost(), proxy.getPort())).execute().returnResponse();
+        }
     }
 }

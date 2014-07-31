@@ -61,7 +61,5 @@ SOFTWARE.
 
 TODO
 ====
-* Add error handling
 * Add support for all the API
-* Proxy Support
 * Add instructions on how to build the library

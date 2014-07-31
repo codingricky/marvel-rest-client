@@ -10,6 +10,7 @@ public class Result<T> {
     private String attributionText;
     private String attributionHTML;
     private Container<T> data;
+    private String rawResponse;
 
     public int getCode() {
         return code;
@@ -65,6 +66,14 @@ public class Result<T> {
 
     public void setAttributionHTML(String attributionHTML) {
         this.attributionHTML = attributionHTML;
+    }
+
+    public String getRawResponse() {
+        return rawResponse;
+    }
+
+    public void setRawResponse(String rawResponse) {
+        this.rawResponse = rawResponse;
     }
 
     @Override

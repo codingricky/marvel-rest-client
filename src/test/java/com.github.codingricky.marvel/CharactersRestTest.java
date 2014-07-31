@@ -19,7 +19,7 @@ import org.junit.Test;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-public class CharactersRestTest extends AbstractRestTest {
+public class CharactersRestTest extends com.github.codingricky.marvel.AbstractRestTest {
 
     @Test
     public void testGetCharacter() throws IOException {
@@ -30,6 +30,12 @@ public class CharactersRestTest extends AbstractRestTest {
     @Test(expected = MarvelRestException.class)
     public void testGetCharacterThatDoesntExist() throws IOException {
         restClient.getCharacter(1);
+    }
+
+    @Test
+    public void testRawResponseIsPopulated() throws IOException {
+        final Result<MarvelCharacter> character = restClient.getCharacter(BLACK_WIDOW_ID);
+        assertThat(character.getRawResponse()).isNotNull();
     }
 
     @Test
