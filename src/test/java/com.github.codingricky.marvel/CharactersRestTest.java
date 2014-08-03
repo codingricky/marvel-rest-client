@@ -27,6 +27,14 @@ public class CharactersRestTest extends com.github.codingricky.marvel.AbstractRe
         assertThat(character.getData()).isNotNull();
     }
 
+    @Test
+    public void testStartsWith() throws IOException {
+        Result<MarvelCharacter> characters = restClient.getCharacters(new CharacterParameterBuilder().nameStartsWith("A").create());
+        assertThat(characters.getData()).isNotNull();
+
+        System.out.println(characters.getData());
+    }
+
     @Test(expected = MarvelRestException.class)
     public void testGetCharacterThatDoesntExist() throws IOException {
         restClient.getCharacter(1);

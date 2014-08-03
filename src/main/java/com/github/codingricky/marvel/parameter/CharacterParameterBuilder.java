@@ -45,6 +45,11 @@ public class CharacterParameterBuilder {
         return this;
     }
 
+    public CharacterParameterBuilder nameStartsWith(String startsWith) {
+        characterParameters.setNameStartsWith(startsWith);
+        return this;
+    }
+
     public CharacterParameters create() {
         return characterParameters;
     }
